@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signova - AI-Powered Electronic Signature Platform</title>
+    <meta name="description" content="Revolutionary AI-powered electronic signature platform. Sign documents 10x faster with advanced automation. Start free trial today!">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+        .hero { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 120px 0; text-align: center; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9; }
+        .cta-button { background: #f59e0b; color: white; padding: 18px 36px; border: none; border-radius: 8px; font-size: 1.2rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s; }
+        .cta-button:hover { background: #d97706; transform: translateY(-2px); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .pricing { padding: 80px 0; background: #f8fafc; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 50px; }
+        .pricing-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; position: relative; }
+        .pricing-card.featured { border: 3px solid #6366f1; transform: scale(1.05); }
+        .price { font-size: 3rem; color: #6366f1; margin: 20px 0; font-weight: 700; }
+        .price-old { text-decoration: line-through; color: #9ca3af; font-size: 1.5rem; }
+        .features { list-style: none; margin: 30px 0; text-align: left; }
+        .features li { padding: 12px 0; border-bottom: 1px solid #e5e7eb; }
+        .features li:before { content: "✓"; color: #10b981; font-weight: bold; margin-right: 10px; }
+        .urgency { background: #ef4444; color: white; padding: 20px 0; text-align: center; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+        .social-proof { padding: 60px 0; text-align: center; background: white; }
+        .testimonial { background: #f8fafc; padding: 30px; margin: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .badge { position: absolute; top: -10px; right: 20px; background: #ef4444; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1>Transform Your Business with AI-Powered Signatures</h1>
+            <p>Signova's revolutionary platform automates document workflows, processes signatures 10x faster, and scales your business operations with intelligent AI.</p>
+            <a href="#pricing" class="cta-button">Start Your Free Trial - 50% OFF Limited Time!</a>
+        </div>
+    </div>
+    
+    <div class="urgency">
+        <div class="container">
+            <h2>🔥 LIMITED TIME: 50% OFF First Month + Free Setup (Expires in <span id="countdown">47:59:59</span>!)</h2>
+        </div>
+    </div>
+    
+    <div class="social-proof">
+        <div class="container">
+            <h2>Join 10,000+ Businesses Already Using Signova</h2>
+            <div class="testimonial">
+                <p>"Signova increased our document processing speed by 300% and saved us $50,000 in operational costs within the first quarter."</p>
+                <strong>- Sarah Johnson, CEO TechCorp</strong>
+            </div>
+            <div class="testimonial">
+                <p>"The AI automation features are incredible. What used to take hours now takes minutes. Game-changer for our legal team."</p>
+                <strong>- Michael Chen, Legal Director</strong>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pricing" id="pricing">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px; font-size: 2.5rem;">Choose Your Plan - Start Making Money Today</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 40px;">All plans include 14-day free trial • No setup fees • Cancel anytime</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$4.99<small>/month</small></div>
+                    <div class="price-old">$9.99/month</div>
+                    <p>Perfect for individuals and small teams</p>
+                    <ul class="features">
+                        <li>5 documents per month</li>
+                        <li>Basic e-signature</li>
+                        <li>Email support</li>
+                        <li>Mobile app access</li>
+                        <li>Document templates</li>
+                    </ul>
+                    <button class="cta-button" onclick="startPayment('starter', 4.99)">Get Started - 50% OFF!</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="badge">MOST POPULAR</div>
+                    <h3>Professional</h3>
+                    <div class="price">$14.99<small>/month</small></div>
+                    <div class="price-old">$29.99/month</div>
+                    <p>Advanced features for growing businesses</p>
+                    <ul class="features">
+                        <li>Unlimited documents</li>
+                        <li>AI-powered automation</li>
+                        <li>Advanced workflows</li>
+                        <li>Team collaboration</li>
+                        <li>Priority support</li>
+                        <li>Custom branding</li>
+                        <li>API access</li>
+                    </ul>
+                    <button class="cta-button" onclick="startPayment('professional', 14.99)">Start Free Trial - 50% OFF!</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$49.99<small>/month</small></div>
+                    <div class="price-old">$99.99/month</div>
+                    <p>Complete solution for large organizations</p>
+                    <ul class="features">
+                        <li>Everything in Professional</li>
+                        <li>Advanced AI agents</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated support</li>
+                        <li>SLA guarantee</li>
+                        <li>Advanced analytics</li>
+                        <li>White-label solution</li>
+                    </ul>
+                    <button class="cta-button" onclick="startPayment('enterprise', 49.99)">Get Enterprise Access - 50% OFF!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="urgency">
+        <div class="container">
+            <h2>⚡ Act Now: This 50% discount expires soon! Don't miss out on transforming your business.</h2>
+        </div>
+    </div>
+
+    <script>
+        function startPayment(plan, price) {
+            // Redirect to marketing platform for payment processing
+            window.location.href = `http://45.55.212.255/create-checkout-session?plan=${plan}&price=${price}`;
+        }
+        
+        // Countdown timer
+        let timeLeft = 48 * 60 * 60; // 48 hours in seconds
+        function updateCountdown() {
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
+            
+            document.getElementById('countdown').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            timeLeft--;
+            if (timeLeft < 0) timeLeft = 48 * 60 * 60; // Reset to 48 hours
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
