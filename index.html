@@ -261,7 +261,7 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="https://portal.signova.ai" class="logo">ð Signova</a>
+            <a href="javascript:void(0)" onclick="openPaymentModal('starter')" class="logo">ð Signova</a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
@@ -376,6 +376,720 @@
         // Update stats every 30 seconds
         setInterval(updateStats, 30000);
     </script>
+
+    <!-- Stripe-Compliant Payment Form -->
+    <div id="payment-modal" class="payment-modal" style="display: none;">
+        <div class="payment-modal-content">
+            <div class="payment-header">
+                <h2>Complete Your Registration</h2>
+                <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+            </div>
+            
+            <form id="stripe-payment-form" onsubmit="processPayment(event)">
+                <div class="form-section">
+                    <h3>Account Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="customer-email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="customer-email" name="email" required 
+                               placeholder="Enter your email address"
+                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                               title="Please enter a valid email address">
+                        <div class="field-error" id="email-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="customer-name" name="name" required 
+                               placeholder="Enter your full name"
+                               minlength="2"
+                               title="Please enter your full name">
+                        <div class="field-error" id="name-error"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company-name">Company Name <span class="optional">(Optional)</span></label>
+                        <input type="text" id="company-name" name="company" 
+                               placeholder="Enter your company name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-password">Create Password <span class="required">*</span></label>
+                        <input type="password" id="customer-password" name="password" required 
+                               placeholder="Create a secure password"
+                               minlength="8"
+                               pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}"
+                               title="Password must be at least 8 characters with uppercase, lowercase, and number">
+                        <div class="password-requirements">
+                            <small>Password must contain: 8+ characters, uppercase, lowercase, and number</small>
+                        </div>
+                        <div class="field-error" id="password-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Subscription Plan</h3>
+                    <div class="form-group">
+                        <label for="selected-plan">Selected Plan <span class="required">*</span></label>
+                        <select id="selected-plan" name="plan" required>
+                            <option value="">Select a plan</option>
+                            <option value="starter">Starter - $4.99/month (50% OFF)</option>
+                            <option value="professional">Professional - $14.99/month (50% OFF)</option>
+                            <option value="enterprise">Enterprise - $49.99/month (50% OFF)</option>
+                        </select>
+                        <div class="field-error" id="plan-error"></div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Payment Information <span class="required">*</span></h3>
+                    <p class="payment-security">
+                        <i class="security-icon">🔒</i> Your payment information is secure and encrypted
+                    </p>
+                    
+                    <!-- Stripe Elements will be inserted here -->
+                    <div id="stripe-card-element" class="stripe-element">
+                        <!-- Stripe Elements will create form elements here -->
+                    </div>
+                    <div class="field-error" id="card-errors" role="alert"></div>
+                    
+                    <div class="payment-methods">
+                        <p>We accept:</p>
+                        <div class="payment-icons">
+                            <span class="payment-icon">💳 Credit Card</span>
+                            <span class="payment-icon">🅿️ PayPal</span>
+                            <span class="payment-icon">🍎 Apple Pay</span>
+                            <span class="payment-icon">🔵 Google Pay</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="terms-agreement">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms-agreement" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#terms" target="_blank">Terms of Service</a> and 
+                            <a href="#privacy" target="_blank">Privacy Policy</a> <span class="required">*</span>
+                        </label>
+                        <div class="field-error" id="terms-error"></div>
+                    </div>
+                    
+                    <div class="marketing-consent">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="marketing-consent" name="marketing">
+                            <span class="checkmark"></span>
+                            I would like to receive product updates and marketing communications
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closePaymentModal()">Cancel</button>
+                    <button type="submit" id="submit-payment" class="btn-primary" disabled>
+                        <span id="button-text">Complete Registration</span>
+                        <span id="button-spinner" class="spinner" style="display: none;"></span>
+                    </button>
+                </div>
+                
+                <div class="form-footer">
+                    <p class="security-note">
+                        <i class="security-icon">🛡️</i> 
+                        Secured by 256-bit SSL encryption. Your data is protected.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <style>
+    .payment-modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.8);
+        backdrop-filter: blur(5px);
+    }
+    
+    .payment-modal-content {
+        background-color: #ffffff;
+        margin: 2% auto;
+        padding: 0;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        animation: modalSlideIn 0.3s ease-out;
+    }
+    
+    @keyframes modalSlideIn {
+        from { opacity: 0; transform: translateY(-50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .payment-header {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        color: white;
+        padding: 20px 30px;
+        border-radius: 12px 12px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .payment-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+    .close-modal {
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+    }
+    
+    .close-modal:hover {
+        opacity: 1;
+    }
+    
+    #stripe-payment-form {
+        padding: 30px;
+    }
+    
+    .form-section {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .form-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+    
+    .form-section h3 {
+        color: #1f2937;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #374151;
+        font-size: 0.95rem;
+    }
+    
+    .required {
+        color: #ef4444;
+        font-weight: bold;
+    }
+    
+    .optional {
+        color: #6b7280;
+        font-weight: normal;
+        font-style: italic;
+    }
+    
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background-color: #ffffff;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .form-group input:invalid {
+        border-color: #ef4444;
+    }
+    
+    .form-group input:valid {
+        border-color: #10b981;
+    }
+    
+    .password-requirements {
+        margin-top: 5px;
+    }
+    
+    .password-requirements small {
+        color: #6b7280;
+        font-size: 0.85rem;
+    }
+    
+    .field-error {
+        color: #ef4444;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        display: none;
+    }
+    
+    .field-error.show {
+        display: block;
+    }
+    
+    .payment-security {
+        background: #f0f9ff;
+        border: 1px solid #bae6fd;
+        border-radius: 6px;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        color: #0369a1;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .stripe-element {
+        background: #ffffff;
+        border: 2px solid #d1d5db;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 15px;
+        transition: border-color 0.3s ease;
+    }
+    
+    .stripe-element:focus-within {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .payment-methods {
+        margin-top: 15px;
+        text-align: center;
+    }
+    
+    .payment-methods p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+    
+    .payment-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .payment-icon {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        color: #374151;
+    }
+    
+    .checkbox-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .checkbox-label input[type="checkbox"] {
+        width: auto;
+        margin: 0;
+    }
+    
+    .terms-agreement {
+        margin-bottom: 15px;
+    }
+    
+    .marketing-consent {
+        margin-bottom: 20px;
+    }
+    
+    .form-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+    
+    .btn-secondary {
+        background: #f9fafb;
+        color: #374151;
+        border: 2px solid #d1d5db;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+        background: #f3f4f6;
+        border-color: #9ca3af;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .btn-primary:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+    }
+    
+    .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
+    .spinner {
+        width: 16px;
+        height: 16px;
+        border: 2px solid #ffffff;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .form-footer {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+    }
+    
+    .security-note {
+        color: #6b7280;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .security-icon {
+        font-size: 1rem;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .payment-modal-content {
+            width: 95%;
+            margin: 5% auto;
+            max-height: 95vh;
+        }
+        
+        .payment-header {
+            padding: 15px 20px;
+        }
+        
+        #stripe-payment-form {
+            padding: 20px;
+        }
+        
+        .form-actions {
+            flex-direction: column;
+        }
+        
+        .payment-icons {
+            gap: 10px;
+        }
+        
+        .payment-icon {
+            font-size: 0.8rem;
+            padding: 6px 10px;
+        }
+    }
+    </style>
+    
+    <script>
+    // Form validation and Stripe integration
+    let stripe, elements, cardElement;
+    
+    function initializeStripe() {
+        // Initialize Stripe (replace with your publishable key)
+        stripe = Stripe('pk_live_51RbQe9BMcX9zVrDCSDIqDbdpQ8zIbpo9d4QWT2hyubtqAFBvocnoupXOQbE9cu30AxvWKodzi79ohJVRNFqeGZ5Q00lSG0Cowv');
+        elements = stripe.elements();
+        
+        // Create card element
+        cardElement = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px',
+                    color: '#424770',
+                    '::placeholder': {
+                        color: '#aab7c4',
+                    },
+                },
+            },
+        });
+        
+        cardElement.mount('#stripe-card-element');
+        
+        // Handle real-time validation errors from the card Element
+        cardElement.on('change', function(event) {
+            const displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+                displayError.classList.add('show');
+            } else {
+                displayError.textContent = '';
+                displayError.classList.remove('show');
+            }
+            
+            validateForm();
+        });
+    }
+    
+    function openPaymentModal(plan) {
+        document.getElementById('payment-modal').style.display = 'block';
+        document.getElementById('selected-plan').value = plan;
+        document.body.style.overflow = 'hidden';
+        
+        // Initialize Stripe if not already done
+        if (!stripe) {
+            initializeStripe();
+        }
+        
+        validateForm();
+    }
+    
+    function closePaymentModal() {
+        document.getElementById('payment-modal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+        resetForm();
+    }
+    
+    function resetForm() {
+        document.getElementById('stripe-payment-form').reset();
+        clearErrors();
+        document.getElementById('submit-payment').disabled = true;
+    }
+    
+    function clearErrors() {
+        const errors = document.querySelectorAll('.field-error');
+        errors.forEach(error => {
+            error.textContent = '';
+            error.classList.remove('show');
+        });
+    }
+    
+    function showError(fieldId, message) {
+        const errorElement = document.getElementById(fieldId + '-error');
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+    }
+    
+    function validateEmail(email) {
+        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return re.test(email);
+    }
+    
+    function validatePassword(password) {
+        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/;
+        return re.test(password);
+    }
+    
+    function validateForm() {
+        clearErrors();
+        let isValid = true;
+        
+        // Validate email
+        const email = document.getElementById('customer-email').value;
+        if (!email) {
+            showError('email', 'Email address is required');
+            isValid = false;
+        } else if (!validateEmail(email)) {
+            showError('email', 'Please enter a valid email address');
+            isValid = false;
+        }
+        
+        // Validate name
+        const name = document.getElementById('customer-name').value;
+        if (!name || name.length < 2) {
+            showError('name', 'Full name is required (minimum 2 characters)');
+            isValid = false;
+        }
+        
+        // Validate password
+        const password = document.getElementById('customer-password').value;
+        if (!password) {
+            showError('password', 'Password is required');
+            isValid = false;
+        } else if (!validatePassword(password)) {
+            showError('password', 'Password must be at least 8 characters with uppercase, lowercase, and number');
+            isValid = false;
+        }
+        
+        // Validate plan selection
+        const plan = document.getElementById('selected-plan').value;
+        if (!plan) {
+            showError('plan', 'Please select a subscription plan');
+            isValid = false;
+        }
+        
+        // Validate terms agreement
+        const terms = document.getElementById('terms-agreement').checked;
+        if (!terms) {
+            showError('terms', 'You must agree to the Terms of Service and Privacy Policy');
+            isValid = false;
+        }
+        
+        // Enable/disable submit button
+        document.getElementById('submit-payment').disabled = !isValid;
+        
+        return isValid;
+    }
+    
+    // Add event listeners for real-time validation
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('stripe-payment-form');
+        if (form) {
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', validateForm);
+                input.addEventListener('change', validateForm);
+            });
+        }
+    });
+    
+    async function processPayment(event) {
+        event.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
+        
+        const submitButton = document.getElementById('submit-payment');
+        const buttonText = document.getElementById('button-text');
+        const buttonSpinner = document.getElementById('button-spinner');
+        
+        // Show loading state
+        submitButton.disabled = true;
+        buttonText.style.display = 'none';
+        buttonSpinner.style.display = 'inline-block';
+        
+        try {
+            // Get form data
+            const formData = new FormData(document.getElementById('stripe-payment-form'));
+            const customerData = {
+                email: formData.get('email'),
+                name: formData.get('name'),
+                company: formData.get('company'),
+                plan: formData.get('plan'),
+                marketing_consent: formData.get('marketing') === 'on'
+            };
+            
+            // Create payment method
+            const {error, paymentMethod} = await stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+                billing_details: {
+                    name: customerData.name,
+                    email: customerData.email,
+                },
+            });
+            
+            if (error) {
+                showError('card', error.message);
+                resetButtonState();
+                return;
+            }
+            
+            // Process payment with your backend
+            const response = await fetch('/api/create-subscription', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    payment_method_id: paymentMethod.id,
+                    customer_data: customerData
+                }),
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                // Success! Redirect to portal
+                window.location.href = 'https://portal.signova.ai?welcome=true';
+            } else {
+                showError('card', result.error || 'Payment processing failed. Please try again.');
+                resetButtonState();
+            }
+            
+        } catch (error) {
+            console.error('Payment error:', error);
+            showError('card', 'An unexpected error occurred. Please try again.');
+            resetButtonState();
+        }
+    }
+    
+    function resetButtonState() {
+        const submitButton = document.getElementById('submit-payment');
+        const buttonText = document.getElementById('button-text');
+        const buttonSpinner = document.getElementById('button-spinner');
+        
+        submitButton.disabled = false;
+        buttonText.style.display = 'inline';
+        buttonSpinner.style.display = 'none';
+    }
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('payment-modal');
+        if (event.target === modal) {
+            closePaymentModal();
+        }
+    }
+    </script>
+    
 </body>
 </html>
 
