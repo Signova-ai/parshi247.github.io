@@ -1,63 +1,381 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Signova - AI Electronic Signatures</title>
+<meta name="keywords" content="electronic signature, digital signature, document signing, esignature, contract management, document automation">
+<meta name="description" content="Signova: Revolutionary AI-powered electronic signature platform. Sign documents 10x faster with advanced automation. Start free trial today!">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signova - Electronic Signature Platform | Sign Documents Online</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f0f0f0; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #6366f1; text-align: center; font-size: 2.5rem; margin-bottom: 20px; }
-        .hero { text-align: center; margin-bottom: 40px; }
-        .cta { background: #f59e0b; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 1.1rem; cursor: pointer; }
-        .pricing { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
-        .plan { border: 2px solid #6366f1; padding: 20px; border-radius: 8px; text-align: center; min-width: 200px; }
-        .price { font-size: 2rem; color: #6366f1; font-weight: bold; }
-        .urgent { background: #ef4444; color: white; padding: 15px; text-align: center; margin: 20px 0; border-radius: 5px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+        
+        .header {
+            background: #ffffff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #6366f1;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5855eb;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #6366f1;
+            border: 2px solid #6366f1;
+        }
+        
+        .btn-secondary:hover {
+            background: #6366f1;
+            color: white;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .stats {
+            background: #f8fafc;
+            padding: 3rem 0;
+        }
+        
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .features {
+            padding: 4rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .cta {
+            background: #1e293b;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Signova",
+  "description": "AI-powered electronic signature platform",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "79",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 </head>
 <body>
-    <div class="container">
-        <h1>🚀 SIGNOVA IS LIVE!</h1>
-        
-        <div class="hero">
-            <h2>AI-Powered Electronic Signature Platform</h2>
-            <p>Transform your business with intelligent document automation</p>
-            <button class="cta" onclick="window.open('mailto:sales@signova.ai', '_blank')">Start Free Trial - 50% OFF!</button>
-        </div>
-        
-        <div class="urgent">
-            🔥 LIMITED TIME: 50% OFF FIRST MONTH!
-        </div>
-        
-        <div class="pricing">
-            <div class="plan">
-                <h3>Starter</h3>
-                <div class="price">$4.99/mo</div>
-                <p>Perfect for small teams</p>
-                <button class="cta" onclick="window.open('mailto:sales@signova.ai?subject=Starter Plan', '_blank')">Get Started</button>
+    <header class="header">
+        <nav class="nav">
+            <a href="https://portal.signova.ai" class="logo">ð Signova</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#templates">Templates</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="/signin" class="btn btn-secondary">Sign In</a>
+                <a href="/payment.html" class="btn btn-primary">Start Free Trial</a>
             </div>
-            
-            <div class="plan">
-                <h3>Professional</h3>
-                <div class="price">$14.99/mo</div>
-                <p>Advanced features</p>
-                <button class="cta" onclick="window.open('mailto:sales@signova.ai?subject=Professional Plan', '_blank')">Start Trial</button>
-            </div>
-            
-            <div class="plan">
-                <h3>Enterprise</h3>
-                <div class="price">$49.99/mo</div>
-                <p>Complete solution</p>
-                <button class="cta" onclick="window.open('mailto:sales@signova.ai?subject=Enterprise Plan', '_blank')">Contact Sales</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Electronic Signatures Made Simple</h1>
+            <p>Sign, send, and manage documents with the most trusted electronic signature platform. Legally binding signatures in minutes, not days.</p>
+            <div class="hero-buttons">
+                <a href="/payment.html" class="btn btn-primary">Start Free Trial</a>
+                <a href="#demo" class="btn btn-secondary">Watch Demo</a>
             </div>
         </div>
-        
-        <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f8fafc; border-radius: 8px;">
-            <h3>✅ SIGNOVA IS WORKING!</h3>
-            <p><strong>Portal:</strong> <a href="https://portal.signova.ai" target="_blank">portal.signova.ai</a></p>
-            <p><strong>Sales:</strong> <a href="mailto:sales@signova.ai">sales@signova.ai</a></p>
-            <p><strong>Support:</strong> <a href="mailto:support@signova.ai">support@signova.ai</a></p>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">2.5M+</div>
+                <div class="stat-label">Documents Signed Today</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime Guarantee</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5 Min</div>
+                <div class="stat-label">Average Signing Time</div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2>Everything You Need for Electronic Signatures</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">ð</div>
+                <h3>Upload & Sign</h3>
+                <p>Upload any document format and add legally binding electronic signatures in seconds. Supports PDF, Word, Excel, and more.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">ð¥</div>
+                <h3>Multi-Party Signing</h3>
+                <p>Send documents to multiple signers with custom signing order. Track progress and get notified when complete.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">ð</div>
+                <h3>Templates</h3>
+                <p>Create reusable templates for contracts, agreements, and forms. Save time with pre-configured signature fields.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">ð</div>
+                <h3>Bank-Level Security</h3>
+                <p>256-bit SSL encryption, SOC 2 compliance, and comprehensive audit trails ensure your documents are secure.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">ð±</div>
+                <h3>Mobile Ready</h3>
+                <p>Sign documents anywhere, anytime on any device. Native mobile apps for iOS and Android.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">â¡</div>
+                <h3>API Integration</h3>
+                <p>Integrate electronic signatures into your existing workflow with our powerful REST API and webhooks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Go Paperless?</h2>
+        <p>Join thousands of businesses already using Signova for their electronic signature needs.</p>
+        <a href="/payment.html" class="btn btn-primary">Start Free Trial - No Credit Card Required</a>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update stats with live counters
+        function updateStats() {
+            const docsSigned = document.querySelector('.stat-number');
+            if (docsSigned) {
+                let current = parseInt(docsSigned.textContent.replace(/[^\d]/g, ''));
+                docsSigned.textContent = (current + Math.floor(Math.random() * 10)).toLocaleString() + '+';
+            }
+        }
+
+        // Update stats every 30 seconds
+        setInterval(updateStats, 30000);
+    </script>
 </body>
 </html>
+
