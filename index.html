@@ -687,7 +687,7 @@
             </ul>
             
             <div class="nav-actions">
-                <a href="https://xnewmhdd.manus.space" class="btn btn-secondary">Sign In</a>
+                <a href="https://portal.signova.ai" class="btn btn-secondary">Sign In</a>
                 <button class="btn btn-primary" onclick="openPurchaseModal()">Start Free Trial</button>
             </div>
         </div>
@@ -1043,12 +1043,12 @@
             
             <form id="purchase-form">
                 <div class="form-group">
-                    <label for="purchase-name">Full Name</label>
+                    <label>Full Name <span style="color: #ef4444;">*</span></label>
                     <input type="text" id="purchase-name" name="name" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="purchase-email">Business Email</label>
+                    <label>Business Email <span style="color: #ef4444;">*</span></label>
                     <input type="email" id="purchase-email" name="email" required>
                 </div>
                 
@@ -1058,7 +1058,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="purchase-plan">Selected Plan</label>
+                    <label>Selected Plan <span style="color: #ef4444;">*</span></label>
                     <select id="purchase-plan" name="plan" required>
                         <option value="professional">Professional - $149/month</option>
                         <option value="enterprise" selected>Enterprise - $499/month</option>
@@ -1067,7 +1067,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="purchase-password">Create Password</label>
+                    <label>Create Password <span style="color: #ef4444;">*</span></label>
                     <input type="password" id="purchase-password" name="password" required>
                 </div>
                 
@@ -1269,8 +1269,38 @@
         
         console.log('Signova website loaded successfully');
     </script>
+<script>
+    // Enhanced form validation
+    function validateForm() {
+        const requiredFields = ['full-name', 'business-email', 'purchase-plan', 'password'];
+        let isValid = true;
+        
+        requiredFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field && !field.value.trim()) {
+                field.style.borderColor = '#ef4444';
+                isValid = false;
+            } else if (field) {
+                field.style.borderColor = '#d1d5db';
+            }
+        });
+        
+        // Email validation
+        const emailField = document.getElementById('business-email');
+        if (emailField && emailField.value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailField.value)) {
+                emailField.style.borderColor = '#ef4444';
+                isValid = false;
+            }
+        }
+        
+        return isValid;
+    }
+    </script>
 </body>
 </html>
 
 <- Make sure Bootstrap/JS is loaded in correct order ( CSS first, then bundle with defer ) redeploy 2025-08-12T09:47:40Z -->
 <- Make sure Bootstrap/JS is loaded in correct order ( CSS first, then bundle with defer ) redeploy 2025-08-12T09:57:23Z -->
+
