@@ -10,6 +10,11 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Stripe JS -->
     <script src="https://js.stripe.com/v3/" defer></script>
     
@@ -24,11 +29,13 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #2c3e50;
+            color: #1a1a1a;
             background: #ffffff;
             overflow-x: hidden;
+            font-weight: 400;
+            letter-spacing: -0.01em;
         }
 
         /* Navigation */
@@ -39,42 +46,44 @@
             right: 0;
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+            border-bottom: 1px solid #e5e7eb;
             z-index: 1000;
             padding: 0;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            height: 70px;
-            padding: 0 2rem;
+            align-items: center;
+            padding: 1rem 3rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #6366f1;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1a1a1a;
             text-decoration: none;
+            letter-spacing: -0.02em;
         }
 
         .logo::before {
             content: "S";
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
             color: white;
             width: 40px;
             height: 40px;
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 0.5rem;
-            font-weight: bold;
+            margin-right: 0.75rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .nav-links {
@@ -86,66 +95,68 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #64748b;
+            color: #6b7280;
             font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
+            transition: all 0.2s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #6366f1;
+            color: #1a1a1a;
+            background: #f9fafb;
         }
 
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #6366f1;
-            border-radius: 1px;
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
+        .btn-signin {
+            color: #6b7280;
             text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
             cursor: pointer;
-            font-size: 0.9rem;
+            border: none;
+            background: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-signin:hover {
+            color: #1a1a1a;
+            background: #f9fafb;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
             color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-secondary {
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-        }
-
-        .btn-secondary:hover {
-            background: #e2e8f0;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 120px 0 80px;
+            padding: 8rem 3rem 6rem;
             text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
             position: relative;
             overflow: hidden;
         }
@@ -157,64 +168,116 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.1;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        .container {
+        .hero-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
             position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 800;
+            color: #1a1a1a;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            line-height: 1.4;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 4rem;
         }
 
-        .stat-item {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .stat-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-title {
+        .btn-hero-primary {
+            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .stat-desc {
-            opacity: 0.8;
+        .btn-hero-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-hero-secondary {
+            color: #6b7280;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            border: 2px solid #e5e7eb;
+            background: white;
+        }
+
+        .btn-hero-secondary:hover {
+            color: #1a1a1a;
+            border-color: #d1d5db;
+            transform: translateY(-1px);
+        }
+
+        /* Trust Indicators */
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            opacity: 0.7;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .trust-item::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: 600;
         }
 
         /* Features Section */
         .features {
-            padding: 80px 0;
-            background: #f8fafc;
+            padding: 6rem 3rem;
+            background: white;
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .section-header {
@@ -223,15 +286,16 @@
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: #1e293b;
+            color: #1a1a1a;
             margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
         .section-header p {
-            font-size: 1.1rem;
-            color: #64748b;
+            font-size: 1.2rem;
+            color: #6b7280;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -239,179 +303,236 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .feature-card {
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #e2e8f0;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
         }
 
         .feature-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 600;
+            color: #1a1a1a;
             margin-bottom: 1rem;
-            color: #1e293b;
         }
 
         .feature-card p {
-            color: #64748b;
+            color: #6b7280;
             line-height: 1.6;
+            font-size: 1rem;
         }
 
-        /* Pricing Section */
-        .pricing {
-            padding: 80px 0;
-            background: white;
+        /* Team Section */
+        .team-section {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
         }
 
-        .pricing-grid {
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .pricing-card {
+        .team-member {
             background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
             padding: 2rem;
-            text-align: center;
-            position: relative;
+            border-radius: 16px;
+            border: 1px solid #f1f5f9;
             transition: all 0.3s ease;
         }
 
-        .pricing-card.featured {
-            border-color: #6366f1;
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .pricing-card.featured::before {
-            content: "Most Popular";
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #6366f1;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h4 {
+            font-size: 1.1rem;
             font-weight: 600;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #1e293b;
-        }
-
-        .pricing-price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #6366f1;
+            color: #1a1a1a;
             margin-bottom: 0.5rem;
         }
 
-        .pricing-period {
-            color: #64748b;
-            margin-bottom: 2rem;
+        .team-member p {
+            color: #6b7280;
+            font-size: 0.9rem;
         }
 
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
+            color: white;
+            text-align: center;
         }
 
-        .pricing-features li {
-            padding: 0.5rem 0;
-            color: #64748b;
-            position: relative;
-            padding-left: 1.5rem;
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .pricing-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #10b981;
-            font-weight: bold;
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-cta {
+            background: white;
+            color: #1a1a1a;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            display: inline-block;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: #f8fafc;
+            padding: 3rem 3rem 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #6b7280;
+            font-size: 0.9rem;
         }
 
         /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 2000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
         }
 
         .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 500px;
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 16px;
             width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
+            max-width: 500px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
         }
 
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .modal-header h2 {
             font-size: 1.5rem;
-            cursor: pointer;
-            color: #64748b;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
         }
 
-        .modal-close:hover {
-            background: #f1f5f9;
-            color: #1e293b;
+        .modal-header p {
+            color: #6b7280;
+            font-size: 0.9rem;
         }
 
-        .modal h3 {
-            margin-bottom: 1rem;
-            color: #1e293b;
-            font-size: 1.5rem;
+        .modal-body {
+            padding: 2rem;
         }
 
         .form-group {
@@ -421,23 +542,24 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 600;
+            font-weight: 500;
             color: #374151;
+            font-size: 0.9rem;
         }
 
-        .form-group label .required {
+        .required {
             color: #ef4444;
-            margin-left: 2px;
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
             padding: 0.75rem;
-            border: 2px solid #e5e7eb;
+            border: 1px solid #d1d5db;
             border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: all 0.2s ease;
+            background: white;
         }
 
         .form-group input:focus,
@@ -447,29 +569,22 @@
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
 
-        .form-group input:invalid {
-            border-color: #ef4444;
-        }
-
-        .form-group input:invalid:focus {
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-
         .payment-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 1rem;
         }
 
         .payment-method {
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
             border-radius: 8px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            background: white;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .payment-method:hover {
@@ -477,736 +592,367 @@
             background: #f8fafc;
         }
 
-        .payment-method.selected {
-            border-color: #6366f1;
-            background: #eff6ff;
-        }
-
-        .payment-method-icon {
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            color: #9ca3af;
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
         }
 
-        .payment-method-name {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .processing-btn {
-            background: #6b7280 !important;
-            cursor: not-allowed !important;
-            opacity: 0.7;
-        }
-
-        .processing-btn:hover {
-            transform: none !important;
-            box-shadow: none !important;
-        }
-
-        /* Footer */
-        .footer {
-            background: #1e293b;
-            color: white;
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #334155;
-            padding-top: 1rem;
-            text-align: center;
-            color: #94a3b8;
-        }
-
-        /* Mobile Notice */
-        .mobile-notice {
-            display: none;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            position: fixed;
-            top: 70px;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .mobile-notice a {
-            color: white;
-            text-decoration: underline;
-            font-weight: 600;
+        .close:hover {
+            color: #6b7280;
+            background: #f3f4f6;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .nav-container {
+                padding: 1rem;
             }
-            
+
+            .hero {
+                padding: 6rem 1rem 4rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
-            .hero-stats {
-                grid-template-columns: repeat(2, 1fr);
+
+            .hero .subtitle {
+                font-size: 1.2rem;
             }
-            
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .trust-indicators {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .features,
+            .team-section,
+            .cta-section {
+                padding: 4rem 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
             .features-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
-            
-            .pricing-grid {
-                grid-template-columns: 1fr;
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            
-            .pricing-card.featured {
-                transform: none;
-            }
-            
-            .modal-content {
-                margin: 1rem;
-                width: calc(100% - 2rem);
+
+            .cta-section h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Mobile Notice -->
-    <div class="mobile-notice" id="mobileNotice">
-        📱 For the best mobile experience, visit <a href="https://mobile.signova.ai">mobile.signova.ai</a>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-                          <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="solutions.html">Solutions</a></li>
-                    <li><a href="platform.html">Platform</a></li>
-                    <li><a href="security.html">Security</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#" onclick="openSignInModal()">Sign In</a></li>
-                </ul>i><button class="btn btn-primary" onclick="openTrialModal()">Start Free Trial</button></li>
+            <a href="#" class="logo">Signova</a>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="platform.html">Platform</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
+            <div class="cta-buttons">
+                <button class="btn-signin" onclick="openSignInModal()">Sign In</button>
+                <button class="btn-primary" onclick="openRegistrationModal()">Start Free Trial</button>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <h1>AI-Powered Document Intelligence</h1>
-            <p>Transform your document workflows with quantum-powered AI processing. Trusted by Fortune 500 companies worldwide for secure, intelligent document management.</p>
-            <button class="btn btn-primary" onclick="openTrialModal()">Start Free Trial</button>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-icon">🔒</div>
-                    <div class="stat-title">SOC 2 Certified</div>
-                    <div class="stat-desc">Enterprise security</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">⚡</div>
-                    <div class="stat-title">99.9% Uptime</div>
-                    <div class="stat-desc">Reliable service</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">🏢</div>
-                    <div class="stat-title">Fortune 500 Trusted</div>
-                    <div class="stat-desc">Industry leaders</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon">🌍</div>
-                    <div class="stat-title">GDPR Compliant</div>
-                    <div class="stat-desc">Global standards</div>
-                </div>
+        <div class="hero-container">
+            <h1>AI-Powered Document Intelligence for Enterprise</h1>
+            <p class="subtitle">Transform your document workflows with advanced AI processing, quantum-grade security, and seamless collaboration tools trusted by Fortune 500 companies.</p>
+            <div class="hero-buttons">
+                <button class="btn-hero-primary" onclick="openRegistrationModal()">Start Free Trial</button>
+                <a href="#features" class="btn-hero-secondary">Learn More</a>
+            </div>
+            <div class="trust-indicators">
+                <div class="trust-item">SOC 2 Certified</div>
+                <div class="trust-item">99.9% Uptime</div>
+                <div class="trust-item">Fortune 500 Trusted</div>
+                <div class="trust-item">GDPR Compliant</div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="solutions">
-        <div class="container">
+    <section class="features" id="features">
+        <div class="features-container">
             <div class="section-header">
-                <h2>Powerful Features</h2>
-                <p>Everything you need to manage, process, and secure your documents with AI-powered intelligence.</p>
+                <h2>Enterprise-Grade Document Intelligence</h2>
+                <p>Powerful AI capabilities designed for the most demanding business requirements</p>
             </div>
-            
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🤖</div>
-                    <h3>AI Document Processing</h3>
-                    <p>Advanced machine learning algorithms automatically extract, classify, and process document content with 99.7% accuracy.</p>
+                    <h3>Advanced AI Processing</h3>
+                    <p>State-of-the-art machine learning algorithms that understand context, extract insights, and automate complex document workflows with 99.2% accuracy.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
+                    <div class="feature-icon">🔒</div>
                     <h3>Quantum Security</h3>
-                    <p>Bank-grade encryption with quantum-resistant algorithms ensures your sensitive documents remain completely secure.</p>
+                    <p>Bank-grade encryption with quantum-resistant algorithms, ensuring your sensitive documents remain protected against current and future threats.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
+                    <div class="icon">🚀</div>
                     <h3>Real-time Collaboration</h3>
-                    <p>Enable teams to work together seamlessly with live editing, comments, and approval workflows.</p>
+                    <p>Seamless team collaboration with live editing, smart notifications, and integrated approval workflows that accelerate business processes.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Advanced Analytics</h3>
-                    <p>Gain insights into document usage, processing times, and team productivity with comprehensive reporting.</p>
+                    <p>Comprehensive insights and reporting with customizable dashboards, performance metrics, and predictive analytics for data-driven decisions.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Workflow Automation</h3>
-                    <p>Automate repetitive tasks with intelligent workflows that adapt to your business processes.</p>
+                    <div class="feature-icon">🔗</div>
+                    <h3>Enterprise Integration</h3>
+                    <p>Seamless integration with your existing enterprise systems including Salesforce, Microsoft 365, Google Workspace, and custom APIs.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Global Compliance</h3>
-                    <p>Meet international standards with built-in compliance for GDPR, HIPAA, SOX, and other regulations.</p>
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Performance</h3>
+                    <p>Process thousands of documents in seconds with our optimized infrastructure, delivering enterprise-scale performance when you need it most.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-container">
             <div class="section-header">
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Choose the plan that fits your needs. All plans include our core AI features and enterprise security.</p>
+                <h2>Trusted by Industry Leaders</h2>
+                <p>Join thousands of professionals who rely on Signova for their critical document workflows</p>
             </div>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Starter</h3>
-                    <div class="pricing-price">$9</div>
-                    <div class="pricing-period">per month</div>
-                    <div class="pricing-desc">Perfect for individuals and small teams</div>
-                    <ul class="pricing-features">
-                        <li>Up to 100 documents/month</li>
-                        <li>Basic AI processing</li>
-                        <li>Email support</li>
-                        <li>Standard security</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('starter')">Get Started</button>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-avatar">
+                        <img src="assets/avatar-ceo.png" alt="CEO Avatar">
+                    </div>
+                    <h4>Chief Executive</h4>
+                    <p>Strategic Leadership</p>
                 </div>
-                
-                <div class="pricing-card">
-                    <h3>Professional</h3>
-                    <div class="pricing-price">$29</div>
-                    <div class="pricing-period">per month</div>
-                    <div class="pricing-desc">Ideal for growing businesses</div>
-                    <ul class="pricing-features">
-                        <li>Up to 1,000 documents/month</li>
-                        <li>Advanced AI processing</li>
-                        <li>Priority support</li>
-                        <li>Enhanced security</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('professional')">Get Started</button>
+                <div class="team-member">
+                    <div class="team-avatar">
+                        <img src="assets/avatar-cto.png" alt="CTO Avatar">
+                    </div>
+                    <h4>Technology Leader</h4>
+                    <p>Innovation & Development</p>
                 </div>
-                
-                <div class="pricing-card featured">
-                    <h3>Business</h3>
-                    <div class="pricing-price">$79</div>
-                    <div class="pricing-period">per month</div>
-                    <div class="pricing-desc">For established companies</div>
-                    <ul class="pricing-features">
-                        <li>Up to 10,000 documents/month</li>
-                        <li>Premium AI features</li>
-                        <li>24/7 support</li>
-                        <li>Enterprise security</li>
-                        <li>Custom integrations</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('business')">Get Started</button>
+                <div class="team-member">
+                    <div class="team-avatar">
+                        <img src="assets/avatar-manager.png" alt="Manager Avatar">
+                    </div>
+                    <h4>Operations Manager</h4>
+                    <p>Process Optimization</p>
                 </div>
-                
-                <div class="pricing-card">
-                    <h3>Enterprise</h3>
-                    <div class="pricing-price">$199</div>
-                    <div class="pricing-period">per month</div>
-                    <div class="pricing-desc">For large organizations</div>
-                    <ul class="pricing-features">
-                        <li>Unlimited documents</li>
-                        <li>Custom AI models</li>
-                        <li>Dedicated support</li>
-                        <li>White-label options</li>
-                        <li>Custom deployment</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('enterprise')">Get Started</button>
+                <div class="team-member">
+                    <div class="team-avatar">
+                        <img src="assets/avatar-analyst.png" alt="Analyst Avatar">
+                    </div>
+                    <h4>Data Analyst</h4>
+                    <p>Business Intelligence</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">
+                        <img src="assets/avatar-team.png" alt="Team Avatar">
+                    </div>
+                    <h4>Collaborative Teams</h4>
+                    <p>Cross-functional Excellence</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Ready to Transform Your Document Workflows?</h2>
+            <p>Join thousands of businesses that trust Signova for their critical document processing needs. Start your free trial today.</p>
+            <button class="btn-cta" onclick="openRegistrationModal()">Start Free Trial</button>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Signova</h3>
-                    <p>AI-powered document intelligence platform trusted by Fortune 500 companies worldwide.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Product</h3>
-                    <ul class="footer-links">
-                        <li><a href="#solutions">Solutions</a></li>
-                        <li><a href="#platform">Platform</a></li>
-                        <li><a href="#security">Security</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#api">API Documentation</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                        <li><a href="#press">Press</a></li>
-                        <li><a href="#partners">Partners</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#help">Help Center</a></li>
-                        <li><a href="#status">Status Page</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#terms">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Signova. All rights reserved.</p>
-            </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 Signova. All rights reserved. | Enterprise Document Intelligence Platform</p>
         </div>
     </footer>
 
-    <!-- Purchase Modal -->
-    <div class="modal" id="purchaseModal">
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('purchaseModal')">&times;</button>
-            <h3>Complete Your Purchase</h3>
-            <p>Get immediate access to all features</p>
-            
-            <form onsubmit="handlePurchase(event)" id="purchaseForm">
-                <div class="form-group">
-                    <label for="fullName">Full Name <span class="required">*</span></label>
-                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="businessEmail">Business Email <span class="required">*</span></label>
-                    <input type="email" id="businessEmail" name="businessEmail" required placeholder="Enter your business email">
-                </div>
-                
-                <div class="form-group">
-                    <label for="companyName">Company Name (Optional)</label>
-                    <input type="text" id="companyName" name="companyName" placeholder="Enter your company name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="selectedPlan">Selected Plan <span class="required">*</span></label>
-                    <select id="selectedPlan" name="selectedPlan" required>
-                        <option value="">Select a plan</option>
-                        <option value="starter">Starter - $9/month</option>
-                        <option value="professional">Professional - $29/month</option>
-                        <option value="business">Business - $79/month</option>
-                        <option value="enterprise">Enterprise - $199/month</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="createPassword">Create Password <span class="required">*</span></label>
-                    <input type="password" id="createPassword" name="createPassword" required placeholder="Create a secure password" minlength="8">
-                </div>
-                
-                <div class="form-group">
-                    <label>Payment Information</label>
-                    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">We accept multiple payment methods:</p>
-                    
-                    <div class="payment-methods">
-                        <div class="payment-method selected" data-method="credit-card" onclick="selectPaymentMethod('credit-card')">
-                            <div class="payment-method-icon">💳</div>
-                            <div class="payment-method-name">Credit Card</div>
-                        </div>
-                        <div class="payment-method" data-method="paypal" onclick="selectPaymentMethod('paypal')">
-                            <div class="payment-method-icon">🅿️</div>
-                            <div class="payment-method-name">PayPal</div>
-                        </div>
-                        <div class="payment-method" data-method="apple-pay" onclick="selectPaymentMethod('apple-pay')">
-                            <div class="payment-method-icon">🍎</div>
-                            <div class="payment-method-name">Apple Pay</div>
-                        </div>
-                        <div class="payment-method" data-method="google-pay" onclick="selectPaymentMethod('google-pay')">
-                            <div class="payment-method-icon">🔵</div>
-                            <div class="payment-method-name">Google Pay</div>
-                        </div>
-                        <div class="payment-method" data-method="bank-transfer" onclick="selectPaymentMethod('bank-transfer')">
-                            <div class="payment-method-icon">🏦</div>
-                            <div class="payment-method-name">Bank Transfer</div>
-                        </div>
-                        <div class="payment-method" data-method="crypto" onclick="selectPaymentMethod('crypto')">
-                            <div class="payment-method-icon">₿</div>
-                            <div class="payment-method-name">Cryptocurrency</div>
+            <span class="close" onclick="closeSignInModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to access your Signova dashboard</p>
+            </div>
+            <div class="modal-body">
+                <form id="signInForm" onsubmit="handleSignIn(event)">
+                    <div class="form-group">
+                        <label for="signInEmail">Email Address <span class="required">*</span></label>
+                        <input type="email" id="signInEmail" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signInPassword">Password <span class="required">*</span></label>
+                        <input type="password" id="signInPassword" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                        🔐 Sign In to Dashboard
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRegistrationModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Start Your Free Trial</h2>
+                <p>Join thousands of businesses using Signova</p>
+            </div>
+            <div class="modal-body">
+                <form id="registrationForm" onsubmit="handleRegistration(event)">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="businessEmail">Business Email <span class="required">*</span></label>
+                        <input type="email" id="businessEmail" name="email" placeholder="Enter your business email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyName">Company Name</label>
+                        <input type="text" id="companyName" name="company" placeholder="Enter your company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="planSelect">Select Plan <span class="required">*</span></label>
+                        <select id="planSelect" name="plan" required>
+                            <option value="">Choose your plan</option>
+                            <option value="starter">Starter - $9/month</option>
+                            <option value="professional">Professional - $29/month</option>
+                            <option value="business">Business - $79/month</option>
+                            <option value="enterprise">Enterprise - $199/month</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Create Password <span class="required">*</span></label>
+                        <input type="password" id="password" name="password" placeholder="Create a secure password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <div class="payment-methods">
+                            <div class="payment-method">💳 Credit Card</div>
+                            <div class="payment-method">🅿️ PayPal</div>
+                            <div class="payment-method">🍎 Apple Pay</div>
+                            <div class="payment-method">🔵 Google Pay</div>
                         </div>
                     </div>
-                    
-                    <input type="hidden" id="paymentMethod" name="paymentMethod" value="credit-card" required>
-                </div>
-                
-                <button type="submit" class="btn btn-primary" id="purchaseBtn" style="width: 100%;">
-                    🔒 Complete Purchase
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Sign In Modal -->
-    <div class="modal" id="signInModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('signInModal')">&times;</button>
-            <h3>Welcome Back</h3>
-            <form onsubmit="handleSignIn(event)">
-                <div class="form-group">
-                    <label for="email">Email Address <span class="required">*</span></label>
-                    <input type="email" id="email" required placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password <span class="required">*</span></label>
-                    <input type="password" id="password" required placeholder="Enter your password">
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">🔐 Sign In to Dashboard</button>
-                <button type="button" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="openSignUpModal()">Create Account</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Sign Up Modal -->
-    <div class="modal" id="signUpModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('signUpModal')">&times;</button>
-            <h3>Create Your Account</h3>
-            <form onsubmit="handleSignUp(event)">
-                <div class="form-group">
-                    <label for="signupName">Full Name <span class="required">*</span></label>
-                    <input type="text" id="signupName" required placeholder="Enter your full name">
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email Address <span class="required">*</span></label>
-                    <input type="email" id="signupEmail" required placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password <span class="required">*</span></label>
-                    <input type="password" id="signupPassword" required placeholder="Create a password" minlength="8">
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">🚀 Create Account</button>
-                <button type="button" class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="openSignInModal()">Already have an account?</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Trial Modal -->
-    <div class="modal" id="trialModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('trialModal')">&times;</button>
-            <h3>Start Your Free Trial</h3>
-            <p>Get 14 days of full access to all Signova features.</p>
-            <form onsubmit="handleTrial(event)">
-                <div class="form-group">
-                    <label for="trialName">Full Name <span class="required">*</span></label>
-                    <input type="text" id="trialName" required placeholder="Enter your full name">
-                </div>
-                <div class="form-group">
-                    <label for="trialEmail">Work Email <span class="required">*</span></label>
-                    <input type="email" id="trialEmail" required placeholder="Enter your work email">
-                </div>
-                <div class="form-group">
-                    <label for="trialCompany">Company Name <span class="required">*</span></label>
-                    <input type="text" id="trialCompany" required placeholder="Enter your company name">
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">🚀 Start Free Trial</button>
-            </form>
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
+                        🚀 Start Free Trial
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
     <script>
-        // Stripe Configuration
-        let stripe;
-        let elements;
-        let selectedPaymentMethod = 'credit-card';
-
-        // Initialize Stripe
-        function initializeStripe() {
-            // Replace with your actual Stripe publishable key
-            stripe = Stripe('pk_test_51234567890abcdef'); // This should be your actual key
-            elements = stripe.elements();
-        }
-
-        // Mobile Detection and Redirect
-        function isMobileDevice() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            const mobileKeywords = ['mobile', 'android', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone'];
-            
-            const isMobileUA = mobileKeywords.some(keyword => userAgent.includes(keyword));
-            const isSmallScreen = window.innerWidth <= 768;
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            
-            return isMobileUA || (isSmallScreen && isTouchDevice);
-        }
-
-        function showMobileNotice() {
-            if (isMobileDevice()) {
-                document.getElementById('mobileNotice').style.display = 'block';
-                document.body.style.paddingTop = '120px';
-            }
-        }
-
         // Modal Functions
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
         function openSignInModal() {
-            closeModal('signUpModal');
-            closeModal('trialModal');
-            closeModal('purchaseModal');
-            openModal('signInModal');
+            document.getElementById('signInModal').style.display = 'block';
         }
 
-        function openSignUpModal() {
-            closeModal('signInModal');
-            closeModal('trialModal');
-            closeModal('purchaseModal');
-            openModal('signUpModal');
+        function closeSignInModal() {
+            document.getElementById('signInModal').style.display = 'none';
         }
 
-        function openTrialModal() {
-            closeModal('signInModal');
-            closeModal('signUpModal');
-            closeModal('purchaseModal');
-            openModal('trialModal');
+        function openRegistrationModal() {
+            document.getElementById('registrationModal').style.display = 'block';
         }
 
-        function openPurchaseModal(plan) {
-            closeModal('signInModal');
-            closeModal('signUpModal');
-            closeModal('trialModal');
+        function closeRegistrationModal() {
+            document.getElementById('registrationModal').style.display = 'none';
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const signInModal = document.getElementById('signInModal');
+            const registrationModal = document.getElementById('registrationModal');
             
-            // Set the selected plan
-            if (plan) {
-                const planSelect = document.getElementById('selectedPlan');
-                planSelect.value = plan;
+            if (event.target === signInModal) {
+                closeSignInModal();
             }
-            
-            openModal('purchaseModal');
+            if (event.target === registrationModal) {
+                closeRegistrationModal();
+            }
         }
 
-        // Payment Method Selection
-        function selectPaymentMethod(method) {
-            selectedPaymentMethod = method;
-            document.getElementById('paymentMethod').value = method;
-            
-            // Update UI
-            document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.remove('selected');
-            });
-            document.querySelector(`[data-method="${method}"]`).classList.add('selected');
-        }
-
-        // Form Handlers
+        // Handle Sign In
         function handleSignIn(event) {
             event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const email = document.getElementById('signInEmail').value;
+            const password = document.getElementById('signInPassword').value;
             
-            // Basic validation
-            if (!email || !password) {
-                showNotification('Please enter both email and password.', 'error');
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = event.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '🔄 Signing In...';
-            submitBtn.disabled = true;
-            
-            // Simulate authentication delay and redirect to portal
-            setTimeout(() => {
-                showNotification('Welcome back! Redirecting to your dashboard...', 'success');
-                closeModal('signInModal');
-                
+            // Simulate authentication and redirect to portal
+            if (email && password) {
+                // Close modal
+                closeSignInModal();
                 // Redirect to user portal
-                setTimeout(() => {
-                    window.location.href = 'https://padygifh.manus.space/';
-                }, 1000);
-            }, 1500);
-        }
-
-        function handleSignUp(event) {
-            event.preventDefault();
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            
-            // Validate password strength
-            if (password.length < 8) {
-                showNotification('Password must be at least 8 characters long.', 'error');
-                return;
+                window.location.href = 'https://padygifh.manus.space/';
             }
-            
-            // Simulate sign up - replace with actual registration
-            showNotification('Account creation functionality would be implemented here.', 'info');
-            closeModal('signUpModal');
         }
 
-        function handleTrial(event) {
+        // Handle Registration
+        function handleRegistration(event) {
             event.preventDefault();
-            const name = document.getElementById('trialName').value;
-            const email = document.getElementById('trialEmail').value;
-            const company = document.getElementById('trialCompany').value;
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
             
-            // Simulate trial start - replace with actual trial activation
-            showNotification('Free trial would be activated here.', 'success');
-            closeModal('trialModal');
+            // Simulate registration process
+            console.log('Registration data:', data);
+            
+            // Show success message
+            alert('Registration successful! Redirecting to your dashboard...');
+            
+            // Close modal and redirect
+            closeRegistrationModal();
+            window.location.href = 'https://padygifh.manus.space/';
         }
 
-        function handlePurchase(event) {
-            event.preventDefault();
-            
-            const form = document.getElementById('purchaseForm');
-            const btn = document.getElementById('purchaseBtn');
-            
-            // Validate form
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-            
-            // Show processing state
-            btn.textContent = '🔄 Processing...';
-            btn.classList.add('processing-btn');
-            btn.disabled = true;
-            
-            // Get form data
-            const formData = new FormData(form);
-            const purchaseData = {
-                fullName: formData.get('fullName'),
-                businessEmail: formData.get('businessEmail'),
-                companyName: formData.get('companyName'),
-                selectedPlan: formData.get('selectedPlan'),
-                paymentMethod: formData.get('paymentMethod')
-            };
-            
-            // Simulate payment processing
-            setTimeout(() => {
-                // Reset button
-                btn.textContent = '🔒 Complete Purchase';
-                btn.classList.remove('processing-btn');
-                btn.disabled = false;
-                
-                // Show success message
-                showNotification(`Thank you for your interest! Our team will contact you shortly to complete the setup.`, 'success');
-                closeModal('purchaseModal');
-                
-                // Reset form
-                form.reset();
-                selectPaymentMethod('credit-card');
-            }, 2000);
-        }
-
-        function selectPlan(plan) {
-            openPurchaseModal(plan);
-        }
-
-        // Notification System
-        function showNotification(message, type = 'info') {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#6366f1'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                z-index: 3000;
-                max-width: 400px;
-                font-weight: 500;
-                animation: slideIn 0.3s ease;
-            `;
-            notification.textContent = message;
-            
-            // Add animation styles
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            document.body.appendChild(notification);
-            
-            // Remove after 5 seconds
-            setTimeout(() => {
-                notification.remove();
-                style.remove();
-            }, 5000);
-        }
-
-        // Smooth Scrolling for Navigation
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1220,57 +966,13 @@
             });
         });
 
-        // Active Navigation Highlighting
-        function updateActiveNav() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.pageYOffset >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Close modals when clicking outside
-        window.addEventListener('click', function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    closeModal(modal.id);
-                }
-            });
-        });
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            showMobileNotice();
-            updateActiveNav();
-            initializeStripe();
-            
-            // Add scroll event listener
-            window.addEventListener('scroll', updateActiveNav);
-            
-            console.log('Signova Desktop - Payment Fixed Version Loaded');
-            console.log('Features: Fixed payment form, Required field indicators, Stripe integration, Form validation');
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const activeModal = document.querySelector('.modal.active');
-                if (activeModal) {
-                    closeModal(activeModal.id);
-                }
+        // Cache busting
+        const timestamp = Date.now();
+        document.querySelectorAll('link[rel="stylesheet"], script[src]').forEach(element => {
+            if (element.href && !element.href.includes('?')) {
+                element.href += '?v=' + timestamp;
+            } else if (element.src && !element.src.includes('?')) {
+                element.src += '?v=' + timestamp;
             }
         });
     </script>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Signova AI-Powered Document Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #ffffff;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo::before {
+            content: "S";
+            background: #1a1a1a;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #1a1a1a;
+            background: #f9fafb;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: #1a1a1a;
+            color: white;
+            border: 1px solid #1a1a1a;
+        }
+
+        .btn-primary:hover {
+            background: #374151;
+            border-color: #374151;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 26, 26, 0.15);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, #1a1a1a, #374151);
+        }
+
+        .contact-method-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-method-info p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a1a1a;
+            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .team-section {
+            margin-top: 6rem;
+            text-align: center;
+        }
+
+        .team-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .team-section p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            position: relative;
+        }
+
+        .team-member:nth-child(1) .team-avatar {
+            background: linear-gradient(135deg, #1a1a1a, #374151);
+        }
+
+        .team-member:nth-child(2) .team-avatar {
+            background: linear-gradient(135deg, #374151, #4b5563);
+        }
+
+        .team-member:nth-child(3) .team-avatar {
+            background: linear-gradient(135deg, #4b5563, #6b7280);
+        }
+
+        .team-avatar::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .team-member h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .main-content {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Signova</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="platform.html">Platform</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="cta-buttons">
+                <a href="#" class="btn-secondary" onclick="openSignInModal()">Sign In</a>
+                <a href="#" class="btn btn-primary" onclick="openRegistrationModal()">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Contact Our Team</h1>
+            <p>Ready to transform your document workflow? Get in touch with our experts to learn how Signova can help your organization.</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-avatar">📧</div>
+                        <div class="contact-method-info">
+                            <h3>Email Support</h3>
+                            <p>support@signova.ai</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-avatar">📞</div>
+                        <div class="contact-method-info">
+                            <h3>Phone Support</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-avatar">💬</div>
+                        <div class="contact-method-info">
+                            <h3>Live Chat</h3>
+                            <p>Available 24/7 for Enterprise customers</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-avatar">🏢</div>
+                        <div class="contact-method-info">
+                            <h3>Enterprise Sales</h3>
+                            <p>enterprise@signova.ai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Send us a Message</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Business Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your document processing needs..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2>Meet Our Leadership Team</h2>
+            <p>Our experienced team is dedicated to revolutionizing document processing with cutting-edge AI technology.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-avatar">
+                        <img src="assets/avatar-ceo.png" alt="CEO Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3>Alex Chen</h3>
+                    <p>Chief Executive Officer</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">
+                        <img src="assets/avatar-cto.png" alt="CTO Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3>Sarah Johnson</h3>
+                    <p>Chief Technology Officer</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">
+                        <img src="assets/avatar-manager.png" alt="VP Sales Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3>Michael Rodriguez</h3>
+                    <p>VP of Enterprise Sales</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openSignInModal() {
+            // Redirect to sign in functionality
+            window.location.href = 'https://portal.signova.ai';
+        }
+
+        function openRegistrationModal() {
+            // Redirect to registration functionality
+            window.location.href = 'index.html#register';
+        }
+    </script>
+</body>
+</html>
+
