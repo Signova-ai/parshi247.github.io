@@ -3,377 +3,746 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signova User Portal - AI Document Intelligence</title>
+    <title>Signova Portal - Document Intelligence Dashboard</title>
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        .header {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
+
+        /* Apple-inspired Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 0.75rem 2rem;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
         }
-        
-        .logo-icon {
-            background: white;
-            color: #667eea;
-            width: 35px;
-            height: 35px;
+
+        .logo::before {
+            content: "S";
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 10px;
-            font-size: 18px;
+            margin-right: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
         }
-        
-        .user-info {
+
+        .nav-actions {
             display: flex;
             align-items: center;
-            color: white;
-            gap: 15px;
+            gap: 1.5rem;
         }
-        
-        .logout-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            padding: 8px 16px;
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
+            background: rgba(0, 0, 0, 0.04);
+            transition: all 0.2s ease;
             cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
         }
-        
-        .logout-btn:hover {
-            background: rgba(255,255,255,0.3);
+
+        .user-profile:hover {
+            background: rgba(0, 0, 0, 0.08);
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
-        
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        
-        .card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .card-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
-            font-size: 20px;
-        }
-        
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .card-description {
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        
-        .btn {
-            background: #667eea;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .user-name {
             font-weight: 500;
-            transition: background-color 0.3s;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            color: #1d1d1f;
         }
-        
-        .btn:hover {
-            background: #5a6fd8;
+
+        .logout-btn {
+            background: rgba(0, 0, 0, 0.04);
+            color: #1d1d1f;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-        
-        .btn-secondary {
-            background: #6c757d;
+
+        .logout-btn:hover {
+            background: rgba(0, 0, 0, 0.08);
         }
-        
-        .btn-secondary:hover {
-            background: #5a6268;
-        }
-        
-        .stats {
+
+        /* Main Layout */
+        .main-container {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
+            min-height: 100vh;
+            padding-top: 70px;
         }
-        
-        .stat-item {
-            text-align: center;
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 2rem 0;
+            position: fixed;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
         }
-        
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0 1.5rem;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #86868b;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+        }
+
+        .sidebar-nav a::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            background-size: contain;
+            opacity: 0.7;
+        }
+
+        .sidebar-nav a.active::before {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+            background: #f5f5f7;
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .dashboard-subtitle {
+            color: #86868b;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
         .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
         }
-        
+
         .stat-label {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
+            color: #86868b;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
         }
-        
-        .document-item {
+
+        .stat-change {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .stat-change.positive {
+            background: rgba(52, 199, 89, 0.1);
+            color: #34c759;
+        }
+
+        .stat-change.negative {
+            background: rgba(255, 59, 48, 0.1);
+            color: #ff3b30;
+        }
+
+        /* Document Grid */
+        .documents-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 1.5rem;
         }
-        
-        .document-item:last-child {
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .document-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .document-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .document-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .document-title {
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .document-meta {
+            color: #86868b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .document-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-processed {
+            background: rgba(52, 199, 89, 0.1);
+            color: #34c759;
+        }
+
+        .status-processing {
+            background: rgba(255, 149, 0, 0.1);
+            color: #ff9500;
+        }
+
+        .status-pending {
+            background: rgba(142, 142, 147, 0.1);
+            color: #8e8e93;
+        }
+
+        /* Activity Feed */
+        .activity-section {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .activity-item:last-child {
             border-bottom: none;
         }
-        
-        .status-badge {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        .status-completed {
-            background: #d4edda;
-            color: #155724;
-        }
-        
-        .status-processing {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .subscription-info {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
             color: white;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
         }
-        
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            color: #86868b;
+            font-size: 0.9rem;
+        }
+
+        /* Subscription Info */
+        .subscription-card {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
         .subscription-plan {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
-        
+
         .subscription-details {
-            font-size: 14px;
             opacity: 0.9;
+            font-size: 0.95rem;
         }
-        
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .dashboard-grid {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .dashboard-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .header {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
+
+            .documents-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .stats {
-                flex-direction: column;
-                gap: 10px;
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(37, 99, 235, 0.2);
+            border-top: 2px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Smooth Animations */
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <div class="logo-icon">S</div>
-            Signova Portal
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Signova</a>
+            
+            <div class="nav-actions">
+                <div class="user-profile">
+                    <div class="user-avatar" id="userInitials">JD</div>
+                    <span class="user-name" id="userEmail">demo@signova.ai</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
         </div>
-        <div class="user-info">
-            <span id="userEmail">demo@signova.ai</span>
-            <button class="logout-btn" onclick="logout()">Logout</button>
-        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active">📊 Dashboard</a></li>
+                <li><a href="#" onclick="startNewDocument()">🤖 AI Creator</a></li>
+                <li><a href="#" onclick="browseTemplates()">📄 Documents</a></li>
+                <li><a href="#" onclick="viewFullReport()">📈 Analytics</a></li>
+                <li><a href="#">⚙️ Workflows</a></li>
+                <li><a href="#">👥 Team</a></li>
+                <li><a href="#">🔒 Security</a></li>
+                <li><a href="#" onclick="manageSubscription()">⚙️ Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header fade-in">
+                <h1 class="dashboard-title">Welcome back</h1>
+                <p class="dashboard-subtitle">Here's what's happening with your documents today</p>
+            </div>
+
+            <!-- Subscription Info -->
+            <div class="subscription-card fade-in">
+                <div class="subscription-plan">Professional Plan ($29/month)</div>
+                <div class="subscription-details">Documents Remaining: 998/1,000 • Next billing: Jan 18, 2025</div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid fade-in">
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Documents Created</div>
+                    <span class="stat-change positive">+3 this week</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">99.2%</div>
+                    <div class="stat-label">AI Accuracy</div>
+                    <span class="stat-change positive">+0.3%</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">8.5</div>
+                    <div class="stat-label">Hours Saved</div>
+                    <span class="stat-change positive">+2.1 hrs</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">47ms</div>
+                    <div class="stat-label">Avg Processing Time</div>
+                    <span class="stat-change positive">-15ms</span>
+                </div>
+            </div>
+
+            <!-- Recent Documents -->
+            <div class="documents-section fade-in">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Documents</h2>
+                    <button class="btn-primary" onclick="startNewDocument()">Create New</button>
+                </div>
+                
+                <div class="documents-grid">
+                    <div class="document-card">
+                        <div class="document-icon">📄</div>
+                        <div class="document-title">Business Plan Template</div>
+                        <div class="document-meta">Created 2 hours ago • AI Generated</div>
+                        <span class="document-status status-processed">Completed</span>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">📊</div>
+                        <div class="document-title">Legal Contract Draft</div>
+                        <div class="document-meta">Created 4 hours ago • AI Generated</div>
+                        <span class="document-status status-processing">Processing</span>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">📋</div>
+                        <div class="document-title">Market Analysis Report</div>
+                        <div class="document-meta">Created 6 hours ago • AI Generated</div>
+                        <span class="document-status status-processed">Completed</span>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">📈</div>
+                        <div class="document-title">Financial Forecast</div>
+                        <div class="document-meta">Created 1 day ago • AI Generated</div>
+                        <span class="document-status status-pending">Pending</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Feed -->
+            <div class="activity-section fade-in">
+                <h2 class="section-title" style="margin-bottom: 1.5rem;">Recent Activity</h2>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">✓</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Document created successfully</div>
+                        <div class="activity-time">Business Plan Template • 2 hours ago</div>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">🤖</div>
+                    <div class="activity-content">
+                        <div class="activity-title">AI processing completed</div>
+                        <div class="activity-time">Legal Contract Draft • 4 hours ago</div>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">📤</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Document generated</div>
+                        <div class="activity-time">Market Analysis Report • 6 hours ago</div>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">👥</div>
+                    <div class="activity-content">
+                        <div class="activity-title">Account upgraded</div>
+                        <div class="activity-time">Professional Plan activated • 1 day ago</div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-    
-    <div class="container">
-        <div class="dashboard-grid">
-            <!-- AI Document Creator -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon" style="background: #667eea; color: white;">🤖</div>
-                    <div class="card-title">AI Document Creator</div>
-                </div>
-                <div class="card-description">
-                    Create professional documents using our AI-powered questionnaire system.
-                </div>
-                <button class="btn" onclick="startNewDocument()">Start New Document</button>
-                <button class="btn btn-secondary" onclick="browseTemplates()">Browse Templates</button>
-            </div>
-            
-            <!-- Document Library -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon" style="background: #28a745; color: white;">📚</div>
-                    <div class="card-title">Document Library</div>
-                </div>
-                <div class="card-description">
-                    Manage and organize all your AI-generated documents.
-                </div>
-                <div class="document-item">
-                    <span>Business Plan Template</span>
-                    <span class="status-badge status-completed">Completed</span>
-                </div>
-                <div class="document-item">
-                    <span>Legal Contract Draft</span>
-                    <span class="status-badge status-processing">Processing</span>
-                </div>
-                <button class="btn" onclick="uploadDocument()">Upload Document</button>
-            </div>
-            
-            <!-- Analytics Dashboard -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon" style="background: #17a2b8; color: white;">📊</div>
-                    <div class="card-title">Analytics Dashboard</div>
-                </div>
-                <div class="card-description">
-                    Track your document processing and usage statistics.
-                </div>
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-value">12</div>
-                        <div class="stat-label">Documents Created</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">8.5</div>
-                        <div class="stat-label">Hours Saved</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">99.2%</div>
-                        <div class="stat-label">AI Accuracy</div>
-                    </div>
-                </div>
-                <button class="btn" onclick="viewFullReport()">View Full Report</button>
-            </div>
-            
-            <!-- Account Settings -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon" style="background: #6f42c1; color: white;">⚙️</div>
-                    <div class="card-title">Account Settings</div>
-                </div>
-                <div class="card-description">
-                    Manage your subscription, billing, and preferences.
-                </div>
-                <div class="subscription-info">
-                    <div class="subscription-plan">Professional ($29/month)</div>
-                    <div class="subscription-details">Documents Remaining: 998/1000</div>
-                </div>
-                <button class="btn" onclick="manageSubscription()">Manage Subscription</button>
-                <button class="btn btn-secondary" onclick="viewBilling()">View Billing</button>
-            </div>
-        </div>
-    </div>
-    
+
     <script>
         // Set user email from URL parameter or localStorage
         function setUserEmail() {
             const urlParams = new URLSearchParams(window.location.search);
             const email = urlParams.get('email') || localStorage.getItem('userEmail') || 'demo@signova.ai';
             document.getElementById('userEmail').textContent = email;
+            
+            // Set user initials
+            const initials = email.split('@')[0].substring(0, 2).toUpperCase();
+            document.getElementById('userInitials').textContent = initials;
+            
             localStorage.setItem('userEmail', email);
         }
-        
+
         function logout() {
             localStorage.removeItem('userEmail');
             alert('You have been logged out successfully.');
             window.location.href = 'https://signova.ai';
         }
-        
+
         function startNewDocument() {
             alert('AI Document Creator will be available soon. This feature is currently in development.');
         }
-        
+
         function browseTemplates() {
             alert('Template browser will be available soon. This feature is currently in development.');
         }
-        
+
         function uploadDocument() {
             alert('Document upload will be available soon. This feature is currently in development.');
         }
-        
+
         function viewFullReport() {
             alert('Full analytics report will be available soon. This feature is currently in development.');
         }
-        
+
         function manageSubscription() {
             alert('Subscription management will be available soon. For now, please contact support at info@signova.ai');
         }
-        
+
         function viewBilling() {
             alert('Billing details will be available soon. For now, please contact support at info@signova.ai');
         }
-        
-        // Initialize page
+
+        // Add smooth animations on load
         document.addEventListener('DOMContentLoaded', function() {
             setUserEmail();
+            
+            // Stagger animation for cards
+            const cards = document.querySelectorAll('.stat-card, .document-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('fade-in');
+            });
+
+            // Simulate real-time updates
+            setInterval(() => {
+                const processingCards = document.querySelectorAll('.status-processing');
+                processingCards.forEach(card => {
+                    if (Math.random() > 0.7) {
+                        card.textContent = 'Completed';
+                        card.className = 'document-status status-processed';
+                    }
+                });
+            }, 5000);
+        });
+
+        // Add click handlers for interactive elements
+        document.querySelectorAll('.document-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Add subtle click animation
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
         });
     </script>
 </body>
