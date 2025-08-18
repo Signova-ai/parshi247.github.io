@@ -518,6 +518,13 @@
             border-radius: 16px;
             padding: 1.5rem;
             margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subscription-current {
+            flex: 1;
         }
 
         .subscription-plan {
@@ -529,6 +536,135 @@
         .subscription-details {
             opacity: 0.9;
             font-size: 0.95rem;
+        }
+
+        .btn-upgrade {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-upgrade:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Upgrade Options */
+        .upgrade-options {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .upgrade-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .plan-card.current-plan {
+            border-color: #2563eb;
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .plan-card.enterprise {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-features {
+            margin-bottom: 2rem;
+        }
+
+        .feature {
+            color: #4b5563;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-upgrade-plan {
+            width: 100%;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-upgrade-plan:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-current {
+            width: 100%;
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            border: 2px solid #2563eb;
+            padding: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: not-allowed;
         }
 
         /* Responsive Design */
@@ -631,8 +767,57 @@
 
             <!-- Subscription Info -->
             <div class="subscription-card fade-in">
-                <div class="subscription-plan">Professional Plan ($29/month)</div>
-                <div class="subscription-details">Documents Remaining: 998/1,000 • Next billing: Jan 18, 2025</div>
+                <div class="subscription-current">
+                    <div class="subscription-plan">Professional Plan ($29/month)</div>
+                    <div class="subscription-details">Documents Remaining: 998/1,000 • Next billing: Jan 18, 2025</div>
+                </div>
+                <button class="btn-upgrade" onclick="showUpgradeOptions()">View All Plans</button>
+            </div>
+
+            <!-- Upgrade Options (Hidden by default) -->
+            <div class="upgrade-options fade-in" id="upgradeOptions" style="display: none;">
+                <h3 class="upgrade-title">Choose Your Plan</h3>
+                <div class="plans-grid">
+                    <div class="plan-card current-plan">
+                        <div class="plan-name">Professional</div>
+                        <div class="plan-price">$29/month</div>
+                        <div class="plan-features">
+                            <div class="feature">✓ 1,000 documents/month</div>
+                            <div class="feature">✓ AI document generation</div>
+                            <div class="feature">✓ Basic analytics</div>
+                            <div class="feature">✓ Email support</div>
+                        </div>
+                        <button class="btn-current" disabled>Current Plan</button>
+                    </div>
+                    
+                    <div class="plan-card">
+                        <div class="plan-name">Business</div>
+                        <div class="plan-price">$79/month</div>
+                        <div class="plan-features">
+                            <div class="feature">✓ 5,000 documents/month</div>
+                            <div class="feature">✓ Advanced AI features</div>
+                            <div class="feature">✓ Advanced analytics</div>
+                            <div class="feature">✓ Priority support</div>
+                            <div class="feature">✓ Team collaboration</div>
+                        </div>
+                        <button class="btn-upgrade-plan" onclick="upgradePlan('business')">Upgrade to Business</button>
+                    </div>
+                    
+                    <div class="plan-card enterprise">
+                        <div class="plan-badge">Most Popular</div>
+                        <div class="plan-name">Enterprise</div>
+                        <div class="plan-price">$199/month</div>
+                        <div class="plan-features">
+                            <div class="feature">✓ Unlimited documents</div>
+                            <div class="feature">✓ Custom AI models</div>
+                            <div class="feature">✓ Advanced security</div>
+                            <div class="feature">✓ 24/7 phone support</div>
+                            <div class="feature">✓ API access</div>
+                            <div class="feature">✓ Custom integrations</div>
+                        </div>
+                        <button class="btn-upgrade-plan" onclick="upgradePlan('enterprise')">Upgrade to Enterprise</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Stats Grid -->
@@ -797,7 +982,43 @@
         }
 
         function manageSubscription() {
-            alert('Subscription management will be available soon. For now, please contact support at info@signova.ai');
+            showUpgradeOptions();
+        }
+
+        function showUpgradeOptions() {
+            const upgradeOptions = document.getElementById('upgradeOptions');
+            if (upgradeOptions.style.display === 'none') {
+                upgradeOptions.style.display = 'block';
+                upgradeOptions.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                upgradeOptions.style.display = 'none';
+            }
+        }
+
+        function upgradePlan(planType) {
+            const planNames = {
+                'business': 'Business Plan ($79/month)',
+                'enterprise': 'Enterprise Plan ($199/month)'
+            };
+            
+            const planName = planNames[planType];
+            
+            if (confirm(`Are you sure you want to upgrade to ${planName}? This will take effect immediately and you'll be charged the prorated amount.`)) {
+                // Simulate upgrade process
+                alert(`Upgrading to ${planName}... This would normally redirect to Stripe checkout.`);
+                
+                // Update the subscription display
+                setTimeout(() => {
+                    const subscriptionPlan = document.querySelector('.subscription-plan');
+                    subscriptionPlan.textContent = planName;
+                    
+                    // Hide upgrade options
+                    document.getElementById('upgradeOptions').style.display = 'none';
+                    
+                    // Show success message
+                    alert(`Successfully upgraded to ${planName}!`);
+                }, 1000);
+            }
         }
 
         function viewBilling() {
