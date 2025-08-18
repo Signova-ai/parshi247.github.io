@@ -1060,9 +1060,28 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
-            // Simulate sign in - replace with actual authentication
-            showNotification('Sign in functionality would be implemented here.', 'info');
-            closeModal('signInModal');
+            // Basic validation
+            if (!email || !password) {
+                showNotification('Please enter both email and password.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '🔄 Signing In...';
+            submitBtn.disabled = true;
+            
+            // Simulate authentication delay and redirect to portal
+            setTimeout(() => {
+                showNotification('Welcome back! Redirecting to your dashboard...', 'success');
+                closeModal('signInModal');
+                
+                // Redirect to user portal
+                setTimeout(() => {
+                    window.location.href = 'https://padygifh.manus.space/';
+                }, 1000);
+            }, 1500);
         }
 
         function handleSignUp(event) {
