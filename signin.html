@@ -232,9 +232,30 @@
                 return;
             }
             
-            // Redirect to signova.ai portal page
-            alert('Redirecting to your dashboard...');
-            window.location.href = 'https://signova.ai/portal.html';
+            // Show loading state
+            const signinBtn = document.querySelector('.signin-btn');
+            signinBtn.innerHTML = '🔄 Verifying subscription...';
+            signinBtn.disabled = true;
+            
+            // Simulate subscription verification
+            setTimeout(() => {
+                // Mock subscription check - in production, this would be a real API call
+                const hasActiveSubscription = true; // This would come from your backend
+                
+                if (hasActiveSubscription) {
+                    signinBtn.innerHTML = '✅ Redirecting to portal...';
+                    // Redirect to the actual user portal
+                    setTimeout(() => {
+                        window.location.href = 'https://padygifh.manus.space/';
+                    }, 1000);
+                } else {
+                    signinBtn.innerHTML = '⚠️ Subscription required';
+                    alert('Active subscription required. Redirecting to pricing...');
+                    setTimeout(() => {
+                        window.location.href = 'https://signova.ai#pricing';
+                    }, 2000);
+                }
+            }, 2000);
         }
         
         function openPurchaseModal() {
