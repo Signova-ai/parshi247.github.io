@@ -197,9 +197,16 @@
         /* Plan Selection */
         .plan-selection {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 1rem;
             margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .plan-selection {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
         }
 
         .plan-option {
@@ -450,6 +457,11 @@
                 <div class="form-group">
                     <label class="form-label">Choose Your Plan</label>
                     <div class="plan-selection">
+                        <div class="plan-option selected" data-plan="trial" onclick="selectPlan('trial')">
+                            <div class="plan-name">Free Trial</div>
+                            <div class="plan-price">$0/14 days</div>
+                            <div class="plan-description">Credit card required - no charge for 14 days</div>
+                        </div>
                         <div class="plan-option" data-plan="professional" onclick="selectPlan('professional')">
                             <div class="plan-name">Professional</div>
                             <div class="plan-price">$29/month</div>
@@ -481,11 +493,7 @@
 
                 <!-- Submit Button -->
                 <button type="submit" class="btn-primary" id="submitBtn">
-                    Start 14-Day Free Trial
-                </button>
-
-                <button type="button" class="btn-secondary" onclick="startFreeTrial()">
-                    Skip Payment - Start Free Trial
+                    Start Free Trial - Credit Card Required
                 </button>
 
                 <div class="security-badge">
@@ -603,4 +611,9 @@
     </script>
 </body>
 </html>
+
+
+    
+    <!-- Autonomous AI Agents -->
+    <script src="assets/js/autonomous-ai-agents.js"></script>
 
