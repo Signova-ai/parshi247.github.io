@@ -10,971 +10,587 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     
+    <!-- Meta Tags -->
+    <meta name="description" content="Transform your document workflows with AI-powered intelligence. Trusted by Fortune 500 companies for secure, intelligent document management.">
+    <meta name="keywords" content="AI document processing, document intelligence, enterprise document management, Fortune 500, secure documents">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Framework CSS -->
+    <link rel="stylesheet" href="assets/css/signova-framework.css">
+    
     <!-- Stripe JS -->
     <script src="https://js.stripe.com/v3/" defer></script>
     
-    <!-- Aggressive Cache Busting -->
-    <script src="cache-control.js?v=1724001234567" defer></script>
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #1a1a1a;
-            background: #ffffff;
-            overflow-x: hidden;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #e5e7eb;
-            z-index: 1000;
-            padding: 0;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 3rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .logo::before {
-            content: "S";
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 0.75rem;
-            font-weight: 700;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #6b7280;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #1a1a1a;
-            background: #f9fafb;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn-signin {
-            color: #6b7280;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-size: 0.95rem;
-        }
-
-        .btn-signin:hover {
-            color: #1a1a1a;
-            background: #f9fafb;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 3rem 6rem;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        /* Page-specific enhancements */
+        .hero-section {
+            background: linear-gradient(135deg, var(--signova-blue-primary) 0%, var(--signova-blue-secondary) 100%);
             position: relative;
             overflow: hidden;
         }
-
-        .hero::before {
+        
+        .hero-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.04) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
             pointer-events: none;
         }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: #6b7280;
-            margin-bottom: 3rem;
-            font-weight: 400;
-            line-height: 1.4;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 4rem;
-        }
-
-        .btn-hero-primary {
-            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
-            color: white;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-hero-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-hero-secondary {
-            color: #6b7280;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            border: 2px solid #e5e7eb;
-            background: white;
-        }
-
-        .btn-hero-secondary:hover {
-            color: #1a1a1a;
-            border-color: #d1d5db;
-            transform: translateY(-1px);
-        }
-
-        /* Trust Indicators */
-        .trust-indicators {
+        
+        .trust-badges {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            opacity: 0.7;
+            gap: var(--space-3xl);
+            flex-wrap: wrap;
+            margin-top: var(--space-3xl);
         }
-
-        .trust-item {
+        
+        .trust-badge {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--space-sm);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 0.9rem;
-            color: #6b7280;
-            font-weight: 500;
+            font-weight: var(--font-weight-medium);
         }
-
-        .trust-item::before {
-            content: "✓";
-            color: #10b981;
-            font-weight: 600;
+        
+        .trust-badge-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-xs);
         }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 3rem;
-            background: white;
-        }
-
-        .features-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-header p {
-            font-size: 1.2rem;
-            color: #6b7280;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
+        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
+            gap: var(--space-2xl);
+            margin-top: var(--space-4xl);
         }
-
+        
         .feature-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
+            background: var(--color-surface);
+            backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            transition: all var(--transition-smooth);
             position: relative;
             overflow: hidden;
         }
-
+        
         .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            height: 3px;
+            background: linear-gradient(90deg, var(--signova-blue-primary), var(--signova-blue-secondary));
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity var(--transition-fast);
         }
-
+        
         .feature-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-color: #e2e8f0;
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-border-hover);
         }
-
+        
         .feature-card:hover::before {
             opacity: 1;
         }
-
+        
         .feature-icon {
             width: 64px;
             height: 64px;
-            border-radius: 12px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--signova-blue-light), rgba(37, 99, 235, 0.05));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: var(--space-xl);
+            transition: all var(--transition-smooth);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--signova-blue-primary), var(--signova-blue-secondary));
+        }
+        
+        .testimonials-section {
             background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
         }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: #6b7280;
-            line-height: 1.6;
-            font-size: 1rem;
-        }
-
-        /* Team Section */
-        .team-section {
-            padding: 6rem 3rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-        }
-
-        .team-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .team-grid {
+        
+        .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-4xl);
         }
-
-        .team-member {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
+        
+        .testimonial-card {
+            background: var(--color-surface);
+            backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            transition: all var(--transition-smooth);
         }
-
-        .team-member:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        
+        .testimonial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
-
-        .team-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            background: #f8fafc;
+        
+        .testimonial-content {
+            font-style: italic;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-xl);
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+        
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--signova-blue-primary), var(--signova-blue-secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            color: white;
+            font-weight: var(--font-weight-semibold);
         }
-
-        .team-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        
+        .testimonial-info h4 {
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-xs);
         }
-
-        .team-member h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-        }
-
-        .team-member p {
-            color: #6b7280;
+        
+        .testimonial-info p {
+            color: var(--color-text-secondary);
             font-size: 0.9rem;
         }
-
-        /* CTA Section */
+        
         .cta-section {
-            padding: 6rem 3rem;
-            background: linear-gradient(135deg, #1a1a1a 0%, #374151 100%);
+            background: linear-gradient(135deg, var(--signova-blue-primary) 0%, var(--signova-blue-secondary) 100%);
             color: white;
             text-align: center;
-        }
-
-        .cta-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2.5rem;
-        }
-
-        .btn-cta {
-            background: white;
-            color: #1a1a1a;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            display: inline-block;
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.2);
-        }
-
-        /* Footer */
-        .footer {
-            background: #f8fafc;
-            padding: 3rem 3rem 2rem;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer p {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
             position: relative;
             overflow: hidden;
         }
-
-        .modal-header {
-            padding: 2rem 2rem 1rem;
-            text-align: center;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .modal-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-header p {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #374151;
-            font-size: 0.9rem;
-        }
-
-        .required {
-            color: #ef4444;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            background: white;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .payment-method {
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .payment-method:hover {
-            border-color: #6366f1;
-            background: #f8fafc;
-        }
-
-        .close {
+        
+        .cta-section::before {
+            content: '';
             position: absolute;
-            right: 1rem;
-            top: 1rem;
-            color: #9ca3af;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.2s ease;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
-
-        .close:hover {
-            color: #6b7280;
-            background: #f3f4f6;
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 1rem;
-            }
-
-            .hero {
-                padding: 6rem 1rem 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .trust-indicators {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .features,
-            .team-section,
-            .cta-section {
-                padding: 4rem 1rem;
-            }
-
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .cta-section h2 {
-                font-size: 2rem;
-            }
+        
+        .pricing-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-2xl);
+            margin-top: var(--space-4xl);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-card {
+            background: var(--color-surface);
+            backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-2xl);
+            text-align: center;
+            transition: all var(--transition-smooth);
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--signova-blue-primary);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--signova-blue-primary);
+            color: white;
+            padding: var(--space-xs) var(--space-lg);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: var(--font-weight-semibold);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-4px);
+        }
+        
+        .pricing-plan {
+            font-size: 1.25rem;
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--signova-blue-primary);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: var(--space-2xl);
+        }
+        
+        .pricing-features li {
+            padding: var(--space-xs) 0;
+            color: var(--color-text-secondary);
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--color-success);
+            font-weight: var(--font-weight-bold);
+            margin-right: var(--space-sm);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="signova-navbar glass-navigation">
         <div class="nav-container">
-            <a href="#" class="logo">Signova</a>
+            <a href="index.html" class="signova-logo">Signova</a>
+            
             <ul class="nav-links">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="platform.html">Platform</a></li>
-                <li><a href="security.html">Security</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="solutions.html" class="nav-link">Solutions</a></li>
+                <li><a href="platform.html" class="nav-link">Platform</a></li>
+                <li><a href="security.html" class="nav-link">Security</a></li>
+                <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="signin.html" class="btn btn-ghost">Sign In</a></li>
+                <li><a href="register.html" class="btn btn-primary">Start Free Trial</a></li>
             </ul>
-            <div class="cta-buttons">
-                <button class="btn-signin" onclick="openSignInModal()">Sign In</button>
-                <button class="btn-primary" onclick="openRegistrationModal()">Start Free Trial</button>
-            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <h1>AI-Powered Document Intelligence for Enterprise</h1>
-            <p class="subtitle">Transform your document workflows with advanced AI processing, quantum-grade security, and seamless collaboration tools trusted by Fortune 500 companies.</p>
-            <div class="hero-buttons">
-                <button class="btn-hero-primary" onclick="openRegistrationModal()">Start Free Trial</button>
-                <a href="#features" class="btn-hero-secondary">Learn More</a>
+    <section class="hero-section">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">AI-Powered Document Intelligence for Enterprise</h1>
+            <p class="hero-subtitle">Transform your document workflows with advanced AI processing, quantum-grade security, and seamless collaboration tools trusted by Fortune 500 companies.</p>
+            
+            <div class="hero-actions">
+                <a href="register.html" class="btn btn-primary btn-large">Start Free Trial</a>
+                <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
             </div>
-            <div class="trust-indicators">
-                <div class="trust-item">SOC 2 Certified</div>
-                <div class="trust-item">99.9% Uptime</div>
-                <div class="trust-item">Fortune 500 Trusted</div>
-                <div class="trust-item">GDPR Compliant</div>
+            
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <div class="trust-badge-icon">🔒</div>
+                    <div>SOC 2 Certified</div>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-badge-icon">⚡</div>
+                    <div>99.9% Uptime</div>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-badge-icon">🏢</div>
+                    <div>Fortune 500 Trusted</div>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-badge-icon">🌍</div>
+                    <div>GDPR Compliant</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="features-container">
-            <div class="section-header">
-                <h2>Enterprise-Grade Document Intelligence</h2>
-                <p>Powerful AI capabilities designed for the most demanding business requirements</p>
+    <section id="features" class="section">
+        <div class="section-container">
+            <div class="section-header slide-up">
+                <h2 class="section-title">Enterprise-Grade Document Intelligence</h2>
+                <p class="section-subtitle">Powerful AI capabilities designed for the most demanding business requirements</p>
             </div>
+            
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card fade-in">
                     <div class="feature-icon">🤖</div>
-                    <h3>Advanced AI Processing</h3>
-                    <p>State-of-the-art machine learning algorithms that understand context, extract insights, and automate complex document workflows with 99.2% accuracy.</p>
+                    <h3 class="card-title">Advanced AI Processing</h3>
+                    <p class="card-description">State-of-the-art machine learning algorithms that understand context, extract insights, and automate complex document workflows with 99.2% accuracy.</p>
                 </div>
-                <div class="feature-card">
+                
+                <div class="feature-card fade-in">
                     <div class="feature-icon">🔒</div>
-                    <h3>Quantum Security</h3>
-                    <p>Bank-grade encryption with quantum-resistant algorithms, ensuring your sensitive documents remain protected against current and future threats.</p>
+                    <h3 class="card-title">Quantum Security</h3>
+                    <p class="card-description">Bank-grade encryption with quantum-resistant algorithms, ensuring your sensitive documents remain protected against current and future threats.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="icon">🚀</div>
-                    <h3>Real-time Collaboration</h3>
-                    <p>Seamless team collaboration with live editing, smart notifications, and integrated approval workflows that accelerate business processes.</p>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="card-title">Real-time Collaboration</h3>
+                    <p class="card-description">Seamless team collaboration with live editing, smart notifications, and integrated approval workflows that accelerate business processes.</p>
                 </div>
-                <div class="feature-card">
+                
+                <div class="feature-card fade-in">
                     <div class="feature-icon">📊</div>
-                    <h3>Advanced Analytics</h3>
-                    <p>Comprehensive insights and reporting with customizable dashboards, performance metrics, and predictive analytics for data-driven decisions.</p>
+                    <h3 class="card-title">Advanced Analytics</h3>
+                    <p class="card-description">Comprehensive insights and reporting with customizable dashboards, performance metrics, and predictive analytics for data-driven decisions.</p>
                 </div>
-                <div class="feature-card">
+                
+                <div class="feature-card fade-in">
                     <div class="feature-icon">🔗</div>
-                    <h3>Enterprise Integration</h3>
-                    <p>Seamless integration with your existing enterprise systems including Salesforce, Microsoft 365, Google Workspace, and custom APIs.</p>
+                    <h3 class="card-title">Enterprise Integration</h3>
+                    <p class="card-description">Seamless integration with your existing enterprise systems including Salesforce, Microsoft 365, Google Workspace, and custom APIs.</p>
                 </div>
-                <div class="feature-card">
+                
+                <div class="feature-card fade-in">
                     <div class="feature-icon">⚡</div>
-                    <h3>Lightning Performance</h3>
-                    <p>Process thousands of documents in seconds with our optimized infrastructure, delivering enterprise-scale performance when you need it most.</p>
+                    <h3 class="card-title">Lightning Performance</h3>
+                    <p class="card-description">Process thousands of documents in seconds with our optimized infrastructure, delivering enterprise-scale performance when you need it most.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="team-section">
-        <div class="team-container">
-            <div class="section-header">
-                <h2>Trusted by Industry Leaders</h2>
-                <p>Join thousands of professionals who rely on Signova for their critical document workflows</p>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section section">
+        <div class="section-container">
+            <div class="section-header slide-up">
+                <h2 class="section-title">Trusted by Industry Leaders</h2>
+                <p class="section-subtitle">Join thousands of professionals who rely on Signova for their critical document workflows</p>
             </div>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="team-avatar">
-                        <img src="assets/avatar-ceo.png" alt="CEO Avatar">
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Signova has revolutionized our document processing workflow. The AI accuracy is incredible, and we've reduced processing time by 80%."
                     </div>
-                    <h4>Chief Executive</h4>
-                    <p>Strategic Leadership</p>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">
-                        <img src="assets/avatar-cto.png" alt="CTO Avatar">
+                    <div class="testimonial-author">
+                        <img src="assets/avatar-ceo.png" alt="CEO" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Chief Executive Officer</p>
+                        </div>
                     </div>
-                    <h4>Technology Leader</h4>
-                    <p>Innovation & Development</p>
                 </div>
-                <div class="team-member">
-                    <div class="team-avatar">
-                        <img src="assets/avatar-manager.png" alt="Manager Avatar">
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "The security features are enterprise-grade. We can confidently process sensitive legal documents knowing they're protected by quantum encryption."
                     </div>
-                    <h4>Operations Manager</h4>
-                    <p>Process Optimization</p>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">
-                        <img src="assets/avatar-analyst.png" alt="Analyst Avatar">
+                    <div class="testimonial-author">
+                        <img src="assets/avatar-cto.png" alt="CTO" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Michael Rodriguez</h4>
+                            <p>Chief Technology Officer</p>
+                        </div>
                     </div>
-                    <h4>Data Analyst</h4>
-                    <p>Business Intelligence</p>
                 </div>
-                <div class="team-member">
-                    <div class="team-avatar">
-                        <img src="assets/avatar-team.png" alt="Team Avatar">
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Real-time collaboration has transformed how our teams work together. Document approval cycles that took weeks now take hours."
                     </div>
-                    <h4>Collaborative Teams</h4>
-                    <p>Cross-functional Excellence</p>
+                    <div class="testimonial-author">
+                        <img src="assets/avatar-manager.png" alt="Manager" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Emily Johnson</h4>
+                            <p>Operations Manager</p>
+                        </div>
+                    </div>
                 </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "The analytics dashboard provides insights we never had before. We can now optimize our document workflows based on real data."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/avatar-analyst.png" alt="Analyst" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>David Park</h4>
+                            <p>Business Intelligence Analyst</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-content">
+                        "Integration with our existing systems was seamless. Signova works perfectly with our Microsoft 365 and Salesforce setup."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/avatar-team.png" alt="Team Lead" class="testimonial-avatar">
+                        <div class="testimonial-info">
+                            <h4>Lisa Thompson</h4>
+                            <p>IT Team Lead</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Preview Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header slide-up">
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-subtitle">Choose the perfect plan for your business needs</p>
+            </div>
+            
+            <div class="pricing-preview">
+                <div class="pricing-card fade-in">
+                    <div class="pricing-plan">Starter</div>
+                    <div class="pricing-price">$9<span style="font-size: 1rem; color: var(--color-text-secondary);">/month</span></div>
+                    <ul class="pricing-features">
+                        <li>100 documents/month</li>
+                        <li>Basic AI processing</li>
+                        <li>Standard support</li>
+                        <li>Basic analytics</li>
+                    </ul>
+                    <a href="register.html" class="btn btn-secondary">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured fade-in">
+                    <div class="pricing-plan">Professional</div>
+                    <div class="pricing-price">$29<span style="font-size: 1rem; color: var(--color-text-secondary);">/month</span></div>
+                    <ul class="pricing-features">
+                        <li>1,000 documents/month</li>
+                        <li>Advanced AI processing</li>
+                        <li>Priority support</li>
+                        <li>Advanced analytics</li>
+                        <li>Team collaboration</li>
+                    </ul>
+                    <a href="register.html" class="btn btn-primary">Start Free Trial</a>
+                </div>
+                
+                <div class="pricing-card fade-in">
+                    <div class="pricing-plan">Business</div>
+                    <div class="pricing-price">$79<span style="font-size: 1rem; color: var(--color-text-secondary);">/month</span></div>
+                    <ul class="pricing-features">
+                        <li>5,000 documents/month</li>
+                        <li>Premium AI processing</li>
+                        <li>24/7 dedicated support</li>
+                        <li>Custom integrations</li>
+                        <li>Advanced security</li>
+                    </ul>
+                    <a href="register.html" class="btn btn-secondary">Get Started</a>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: var(--space-2xl);">
+                <a href="pricing.html" class="btn btn-ghost">View All Plans & Features</a>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-container">
-            <h2>Ready to Transform Your Document Workflows?</h2>
-            <p>Join thousands of businesses that trust Signova for their critical document processing needs. Start your free trial today.</p>
-            <button class="btn-cta" onclick="openRegistrationModal()">Start Free Trial</button>
+    <section class="cta-section section">
+        <div class="section-container">
+            <div class="cta-content fade-in">
+                <h2 class="section-title" style="color: white;">Ready to Transform Your Document Workflows?</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">Join thousands of businesses that trust Signova for their critical document processing needs. Start your free trial today.</p>
+                
+                <div class="hero-actions" style="margin-top: var(--space-2xl);">
+                    <a href="register.html" class="btn btn-secondary btn-large">Start Free Trial</a>
+                    <a href="contact.html" class="btn btn-ghost btn-large" style="color: white; border-color: rgba(255, 255, 255, 0.3);">Contact Sales</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <p>&copy; 2025 Signova. All rights reserved. | Enterprise Document Intelligence Platform</p>
-        </div>
-    </footer>
-
-    <!-- Sign In Modal -->
-    <div id="signInModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeSignInModal()">&times;</span>
-            <div class="modal-header">
-                <h2>Welcome Back</h2>
-                <p>Sign in to access your Signova dashboard</p>
-            </div>
-            <div class="modal-body">
-                <form id="signInForm" onsubmit="handleSignIn(event)">
-                    <div class="form-group">
-                        <label for="signInEmail">Email Address <span class="required">*</span></label>
-                        <input type="email" id="signInEmail" name="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signInPassword">Password <span class="required">*</span></label>
-                        <input type="password" id="signInPassword" name="password" placeholder="Enter your password" required>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
-                        🔐 Sign In to Dashboard
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Registration Modal -->
-    <div id="registrationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeRegistrationModal()">&times;</span>
-            <div class="modal-header">
-                <h2>Start Your Free Trial</h2>
-                <p>Join thousands of businesses using Signova</p>
-            </div>
-            <div class="modal-body">
-                <form id="registrationForm" onsubmit="handleRegistration(event)">
-                    <div class="form-group">
-                        <label for="fullName">Full Name <span class="required">*</span></label>
-                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="businessEmail">Business Email <span class="required">*</span></label>
-                        <input type="email" id="businessEmail" name="email" placeholder="Enter your business email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="companyName">Company Name</label>
-                        <input type="text" id="companyName" name="company" placeholder="Enter your company name">
-                    </div>
-                    <div class="form-group">
-                        <label for="planSelect">Select Plan <span class="required">*</span></label>
-                        <select id="planSelect" name="plan" required>
-                            <option value="">Choose your plan</option>
-                            <option value="starter">Starter - $9/month</option>
-                            <option value="professional">Professional - $29/month</option>
-                            <option value="business">Business - $79/month</option>
-                            <option value="enterprise">Enterprise - $199/month</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Create Password <span class="required">*</span></label>
-                        <input type="password" id="password" name="password" placeholder="Create a secure password" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Payment Method</label>
-                        <div class="payment-methods">
-                            <div class="payment-method">💳 Credit Card</div>
-                            <div class="payment-method">🅿️ PayPal</div>
-                            <div class="payment-method">🍎 Apple Pay</div>
-                            <div class="payment-method">🔵 Google Pay</div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">
-                        🚀 Start Free Trial
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    <!-- Framework JavaScript -->
+    <script src="assets/js/signova-framework.js"></script>
+    
+    <!-- Page-specific JavaScript -->
     <script>
-        // Modal Functions
-        function openSignInModal() {
-            document.getElementById('signInModal').style.display = 'block';
-        }
-
-        function closeSignInModal() {
-            document.getElementById('signInModal').style.display = 'none';
-        }
-
-        function openRegistrationModal() {
-            document.getElementById('registrationModal').style.display = 'block';
-        }
-
-        function closeRegistrationModal() {
-            document.getElementById('registrationModal').style.display = 'none';
-        }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const signInModal = document.getElementById('signInModal');
-            const registrationModal = document.getElementById('registrationModal');
-            
-            if (event.target === signInModal) {
-                closeSignInModal();
-            }
-            if (event.target === registrationModal) {
-                closeRegistrationModal();
-            }
-        }
-
-        // Handle Sign In
-        function handleSignIn(event) {
-            event.preventDefault();
-            const email = document.getElementById('signInEmail').value;
-            const password = document.getElementById('signInPassword').value;
-            
-            // Simulate authentication and redirect to portal
-            if (email && password) {
-                // Close modal
-                closeSignInModal();
-                // Redirect to user portal
-                window.location.href = 'https://padygifh.manus.space/';
-            }
-        }
-
-        // Handle Registration
-        function handleRegistration(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-            
-            // Simulate registration process
-            console.log('Registration data:', data);
-            
-            // Show success message
-            alert('Registration successful! Redirecting to your dashboard...');
-            
-            // Close modal and redirect
-            closeRegistrationModal();
-            window.location.href = 'https://padygifh.manus.space/';
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Enhanced interactions for homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Stagger animations for feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
             });
-        });
-
-        // Cache busting
-        const timestamp = Date.now();
-        document.querySelectorAll('link[rel="stylesheet"], script[src]').forEach(element => {
-            if (element.href && !element.href.includes('?')) {
-                element.href += '?v=' + timestamp;
-            } else if (element.src && !element.src.includes('?')) {
-                element.src += '?v=' + timestamp;
-            }
+            
+            // Stagger animations for testimonial cards
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            testimonialCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.15}s`;
+            });
+            
+            // Stagger animations for pricing cards
+            const pricingCards = document.querySelectorAll('.pricing-card');
+            pricingCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Add hover effects to pricing cards
+            pricingCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('featured')) {
+                        this.style.transform = 'translateY(-4px) scale(1.02)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('featured')) {
+                        this.style.transform = '';
+                    }
+                });
+            });
         });
     </script>
 </body>

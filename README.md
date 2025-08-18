@@ -1,8 +1,18 @@
-# Signova Main Website Theme - Frontend Base
+# Signova - AI-Powered Document Intelligence Platform
 
-## 📦 Package Contents
+🚀 **Premium Apple-inspired business platform for Fortune 500 companies**
 
-This zip file contains the complete frontend theme for your main Signova website (signova.ai) currently deployed on GitHub Pages.
+## 📋 IMPORTANT: Read Documentation First
+
+**⚠️ FOR MANUS AGENTS**: Before making any changes to this project, please read the comprehensive documentation:
+
+👉 **[SIGNOVA_PROJECT_DOCUMENTATION.md](./SIGNOVA_PROJECT_DOCUMENTATION.md)** 👈
+
+This documentation contains everything you need to know about the project architecture, framework usage, and development guidelines.
+
+## 📦 Project Overview
+
+This repository contains the complete Apple-inspired frontend for Signova (signova.ai) with a unified framework system.
 
 ### Files Included:
 - `index.html` - Complete main website with enhanced features
