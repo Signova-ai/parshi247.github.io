@@ -69,7 +69,9 @@ class SignovaChatbot {
         
         header.innerHTML = `
             <div style="display: flex; align-items: center; gap: 12px;">
-                <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">🤖</div>
+                <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <img src="/assets/minimalist-chatbot-icon.png" alt="Signova Assistant" style="width: 24px; height: 24px; object-fit: cover;">
+                </div>
                 <div>
                     <div style="font-weight: 600; font-size: 1rem;">Signova Assistant</div>
                     <div style="font-size: 0.8rem; opacity: 0.9;" id="chatbot-status">Online • Ready to help</div>

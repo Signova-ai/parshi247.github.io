@@ -20,12 +20,24 @@ class SignovaAIAgents {
     }
     
     init() {
+        // Disable AI agents on mobile devices to prevent annoying popups
+        if (this.isMobileDevice()) {
+            console.log('📱 Mobile device detected - AI agents disabled to prevent popups');
+            this.isActive = false;
+            return;
+        }
+        
         this.initializeAgents();
         this.startBehaviorTracking();
         this.setupEventListeners();
         this.startPeriodicOptimization();
         
         console.log('🤖 Signova AI Agents initialized');
+    }
+    
+    isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               window.innerWidth <= 768;
     }
     
     initializeAgents() {
