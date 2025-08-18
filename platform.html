@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform - Signova AI Document Intelligence</title>
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .logo::before {
+            content: "S";
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .platform-overview {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 16px;
+            padding: 3rem;
+            color: white;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .platform-overview h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .platform-overview p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-specs {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .tech-specs h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1e293b;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .spec-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .spec-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-item h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-item p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .integration-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .integration-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #1e293b;
+        }
+
+        .integration-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .integration-logo {
+            width: 120px;
+            height: 60px;
+            background: #f8fafc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Signova</a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="platform.html" class="active">Platform</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" onclick="openSignInModal()">Sign In</a></li>
+            </ul>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" onclick="openRegistrationModal()">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Signova Platform</h1>
+                <p>Enterprise-grade AI document intelligence platform built for scale, security, and performance</p>
+            </div>
+
+            <div class="platform-overview">
+                <h2>Next-Generation Architecture</h2>
+                <p>Built on quantum-resistant infrastructure with AI-first design principles, our platform processes millions of documents daily with 99.9% uptime and enterprise-grade security.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>AI Engine</h3>
+                    <p>Advanced machine learning models trained on billions of documents, providing industry-leading accuracy in document processing and classification.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-time Processing</h3>
+                    <p>Process documents in real-time with sub-second response times, powered by distributed computing and edge processing capabilities.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Auto-scaling Infrastructure</h3>
+                    <p>Automatically scales to handle any workload, from single documents to enterprise-level batch processing of millions of files.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global CDN</h3>
+                    <p>Distributed globally across 50+ data centers for optimal performance and low latency access from anywhere in the world.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>API-First Design</h3>
+                    <p>Comprehensive REST and GraphQL APIs with SDKs for all major programming languages and frameworks.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Real-time analytics and insights with customizable dashboards, reporting, and business intelligence integration.</p>
+                </div>
+            </div>
+
+            <div class="tech-specs">
+                <h2>Technical Specifications</h2>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-number">99.9%</div>
+                        <h4>Uptime SLA</h4>
+                        <p>Guaranteed availability with redundant infrastructure</p>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-number">< 100ms</div>
+                        <h4>API Response</h4>
+                        <p>Lightning-fast API responses for real-time applications</p>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-number">256-bit</div>
+                        <h4>Encryption</h4>
+                        <p>Military-grade encryption for data at rest and in transit</p>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-number">50+</div>
+                        <h4>Data Centers</h4>
+                        <p>Global presence for optimal performance</p>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-number">99.7%</div>
+                        <h4>AI Accuracy</h4>
+                        <p>Industry-leading document processing accuracy</p>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-number">24/7</div>
+                        <h4>Support</h4>
+                        <p>Round-the-clock technical support and monitoring</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="integration-section">
+                <h2>Seamless Integrations</h2>
+                <p>Connect with your existing tools and workflows through our extensive integration ecosystem</p>
+                <div class="integration-logos">
+                    <div class="integration-logo">Salesforce</div>
+                    <div class="integration-logo">Microsoft 365</div>
+                    <div class="integration-logo">Google Workspace</div>
+                    <div class="integration-logo">Slack</div>
+                    <div class="integration-logo">Zapier</div>
+                    <div class="integration-logo">AWS</div>
+                    <div class="integration-logo">Azure</div>
+                    <div class="integration-logo">Dropbox</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openSignInModal() {
+            window.location.href = 'index.html#signin';
+        }
+
+        function openRegistrationModal() {
+            window.location.href = 'index.html#register';
+        }
+    </script>
+</body>
+</html>
+

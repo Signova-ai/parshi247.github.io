@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions - Signova AI Document Intelligence</title>
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .logo::before {
+            content: "S";
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .solution-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .solution-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-features {
+            list-style: none;
+        }
+
+        .solution-features li {
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .solution-features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+
+        .industry-section {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .industry-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1e293b;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .industry-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .industry-item h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .industry-item p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Signova</a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solutions.html" class="active">Solutions</a></li>
+                <li><a href="platform.html">Platform</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" onclick="openSignInModal()">Sign In</a></li>
+            </ul>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" onclick="openRegistrationModal()">Start Free Trial</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>AI-Powered Solutions</h1>
+                <p>Comprehensive document intelligence solutions tailored for every industry and use case</p>
+            </div>
+
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">📄</div>
+                    <h3>Document Processing</h3>
+                    <p>Automatically extract, classify, and process documents with 99.7% accuracy using advanced AI algorithms.</p>
+                    <ul class="solution-features">
+                        <li>OCR and text extraction</li>
+                        <li>Document classification</li>
+                        <li>Data validation</li>
+                        <li>Multi-format support</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🔍</div>
+                    <h3>Intelligent Search</h3>
+                    <p>Find any document or information instantly with AI-powered semantic search capabilities.</p>
+                    <ul class="solution-features">
+                        <li>Semantic search</li>
+                        <li>Content indexing</li>
+                        <li>Advanced filters</li>
+                        <li>Real-time results</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🔄</div>
+                    <h3>Workflow Automation</h3>
+                    <p>Streamline your document workflows with intelligent automation and approval processes.</p>
+                    <ul class="solution-features">
+                        <li>Custom workflows</li>
+                        <li>Approval routing</li>
+                        <li>Status tracking</li>
+                        <li>Integration APIs</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">📊</div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Gain valuable insights into your document processes with comprehensive analytics and reporting.</p>
+                    <ul class="solution-features">
+                        <li>Process analytics</li>
+                        <li>Performance metrics</li>
+                        <li>Custom reports</li>
+                        <li>Trend analysis</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🤝</div>
+                    <h3>Collaboration Tools</h3>
+                    <p>Enable seamless team collaboration with real-time editing, comments, and version control.</p>
+                    <ul class="solution-features">
+                        <li>Real-time editing</li>
+                        <li>Comment system</li>
+                        <li>Version history</li>
+                        <li>Team permissions</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🔐</div>
+                    <h3>Compliance Management</h3>
+                    <p>Ensure regulatory compliance with automated compliance checking and audit trails.</p>
+                    <ul class="solution-features">
+                        <li>Compliance monitoring</li>
+                        <li>Audit trails</li>
+                        <li>Policy enforcement</li>
+                        <li>Risk assessment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="industry-section">
+                <h2>Industry Solutions</h2>
+                <div class="industries-grid">
+                    <div class="industry-item">
+                        <h4>Healthcare</h4>
+                        <p>HIPAA-compliant document processing for medical records, insurance claims, and patient data</p>
+                    </div>
+                    <div class="industry-item">
+                        <h4>Financial Services</h4>
+                        <p>Secure processing of loan applications, compliance documents, and financial reports</p>
+                    </div>
+                    <div class="industry-item">
+                        <h4>Legal</h4>
+                        <p>Contract analysis, legal document review, and case management automation</p>
+                    </div>
+                    <div class="industry-item">
+                        <h4>Insurance</h4>
+                        <p>Claims processing, policy management, and risk assessment automation</p>
+                    </div>
+                    <div class="industry-item">
+                        <h4>Real Estate</h4>
+                        <p>Property document processing, lease management, and transaction automation</p>
+                    </div>
+                    <div class="industry-item">
+                        <h4>Manufacturing</h4>
+                        <p>Quality documentation, compliance reporting, and supply chain document management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openSignInModal() {
+            window.location.href = 'index.html#signin';
+        }
+
+        function openRegistrationModal() {
+            window.location.href = 'index.html#register';
+        }
+    </script>
+</body>
+</html>
+
