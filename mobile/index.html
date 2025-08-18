@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CACHE-BUSTING META TAGS -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="app-version" content="v2025081717">
+    <meta name="last-modified" content="2025-08-17T17:30:00Z">
+    
+    <title>Signova Mobile - AI Document Intelligence</title>
+    
+    <!-- CACHE-BUSTED STYLES -->
+    <style>
+        /* Critical CSS inlined to avoid cache issues */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Force reload styles - cache buster */
+        .cache-buster-v2025081717 {
+            display: none;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+        
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .main-content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-description {
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .price-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .price-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #feca57;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-period {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .price-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-features li {
+            padding: 0.25rem 0;
+            opacity: 0.9;
+        }
+        
+        .ecosystem-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 3rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .tab {
+                padding: 0.75rem;
+            }
+            
+            .auth-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        /* Cache-busting animation */
+        .cache-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 255, 0, 0.8);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cache indicator for debugging -->
+    <div class="cache-indicator">v2025081717</div>
+    
+    <header class="header">
+        <div class="logo">
+            <span>S</span> Signova
+        </div>
+        <div class="auth-buttons">
+            <button class="btn btn-outline" onclick="openSignIn()">Sign In</button>
+            <button class="btn btn-primary" onclick="openSignUp()">Sign Up</button>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <h1 class="hero-title">AI Document Intelligence</h1>
+        <p class="hero-subtitle">
+            Create, manage, and process documents with quantum-powered AI on your mobile device
+        </p>
+        
+        <button class="cta-button" onclick="startFreeTrial()">Start Free Trial</button>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('overview')">Overview</button>
+            <button class="tab" onclick="switchTab('features')">Features</button>
+            <button class="tab" onclick="switchTab('pricing')">Pricing</button>
+            <button class="tab" onclick="switchTab('portal')">Portal</button>
+        </div>
+        
+        <div id="overview" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">617+</div>
+                    <div class="stat-label">Document Types</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Auto-Fill Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8 min</div>
+                    <div class="stat-label">Avg Creation Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$47.5K</div>
+                    <div class="stat-label">Revenue Tracked</div>
+                </div>
+            </div>
+            
+            <div class="ecosystem-section">
+                <h3>🔗 Connected to Signova Ecosystem</h3>
+                <p>Seamlessly syncs with your desktop portal and main platform</p>
+            </div>
+        </div>
+        
+        <div id="features" class="tab-content">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-title">AI Processing</div>
+                    <div class="feature-description">
+                        Advanced machine learning algorithms automatically extract and classify document content with 99.7% accuracy.
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-title">Quantum Security</div>
+                    <div class="feature-description">
+                        Bank-grade encryption with quantum-resistant algorithms ensures your documents remain secure.
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Real-time Collaboration</div>
+                    <div class="feature-description">
+                        Enable teams to work together seamlessly with live editing and approval workflows.
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Advanced Analytics</div>
+                    <div class="feature-description">
+                        Gain insights into document usage, processing times, and team productivity.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="pricing" class="tab-content">
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="price-title">Starter</div>
+                    <div class="price-amount">$9</div>
+                    <div class="price-period">per month</div>
+                    <ul class="price-features">
+                        <li>• Up to 100 documents/month</li>
+                        <li>• Basic AI processing</li>
+                        <li>• Email support</li>
+                        <li>• Mobile app access</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-title">Professional</div>
+                    <div class="price-amount">$29</div>
+                    <div class="price-period">per month</div>
+                    <ul class="price-features">
+                        <li>• Up to 1,000 documents/month</li>
+                        <li>• Advanced AI processing</li>
+                        <li>• Priority support</li>
+                        <li>• Team collaboration</li>
+                        <li>• API access</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-title">Business</div>
+                    <div class="price-amount">$79</div>
+                    <div class="price-period">per month</div>
+                    <ul class="price-features">
+                        <li>• Up to 10,000 documents/month</li>
+                        <li>• Premium AI processing</li>
+                        <li>• 24/7 phone support</li>
+                        <li>• Advanced analytics</li>
+                        <li>• Custom integrations</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-title">Enterprise</div>
+                    <div class="price-amount">$199</div>
+                    <div class="price-period">per month</div>
+                    <ul class="price-features">
+                        <li>• Unlimited documents</li>
+                        <li>• Enterprise AI processing</li>
+                        <li>• Dedicated account manager</li>
+                        <li>• Custom deployment</li>
+                        <li>• SLA guarantee</li>
+                    </ul>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="portal" class="tab-content">
+            <div class="ecosystem-section">
+                <h2>Access Your Portal</h2>
+                <p>Sign in to access your personalized dashboard and manage your documents.</p>
+                <br>
+                <button class="btn btn-primary" onclick="openPortal()">Open Portal</button>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#privacy">Privacy</a>
+            <a href="#terms">Terms</a>
+            <a href="#support">Support</a>
+        </div>
+        <div class="copyright">
+            © 2025 Signova. All rights reserved.
+        </div>
+    </footer>
+    
+    <!-- CACHE-BUSTED JAVASCRIPT -->
+    <script>
+        // Cache-busting version check
+        const APP_VERSION = 'v2025081717';
+        console.log('App loaded with version:', APP_VERSION);
+        
+        // Force cache refresh function
+        function forceCacheRefresh() {
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.reload(true);
+        }
+        
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Log for debugging
+            console.log('Switched to tab:', tabName, 'Version:', APP_VERSION);
+        }
+        
+        // Authentication functions
+        function openSignIn() {
+            console.log('Opening Sign In modal - Version:', APP_VERSION);
+            // Create modal overlay
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            `;
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 12px;
+                max-width: 400px;
+                width: 90%;
+                color: #333;
+                position: relative;
+            `;
+            
+            modal.innerHTML = `
+                <button onclick="this.parentElement.parentElement.remove()" style="
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #666;
+                ">×</button>
+                <h2 style="margin-bottom: 1rem;">Sign In</h2>
+                <form>
+                    <input type="email" placeholder="Email" style="
+                        width: 100%;
+                        padding: 0.75rem;
+                        margin-bottom: 1rem;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                    ">
+                    <input type="password" placeholder="Password" style="
+                        width: 100%;
+                        padding: 0.75rem;
+                        margin-bottom: 1rem;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                    ">
+                    <button type="submit" style="
+                        width: 100%;
+                        padding: 0.75rem;
+                        background: linear-gradient(45deg, #667eea, #764ba2);
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        font-weight: bold;
+                    ">Sign In</button>
+                </form>
+            `;
+            
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+        }
+        
+        function openSignUp() {
+            console.log('Opening Sign Up modal - Version:', APP_VERSION);
+            // Similar to sign in but with additional fields
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            `;
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                background: white;
+                padding: 2rem;
+                border-radius: 12px;
+                max-width: 400px;
+                width: 90%;
+                color: #333;
+                position: relative;
+            `;
+            
+            modal.innerHTML = `
+                <button onclick="this.parentElement.parentElement.remove()" style="
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #666;
+                ">×</button>
+                <h2 style="margin-bottom: 1rem;">Sign Up</h2>
+                <form>
+                    <input type="text" placeholder="Full Name" style="
+                        width: 100%;
+                        padding: 0.75rem;
+                        margin-bottom: 1rem;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                    ">
+                    <input type="email" placeholder="Email" style="
+                        width: 100%;
+                        padding: 0.75rem;
+                        margin-bottom: 1rem;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                    ">
+                    <input type="password" placeholder="Password" style="
+                        width: 100%;
+                        padding: 0.75rem;
+                        margin-bottom: 1rem;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                    ">
+                    <button type="submit" style="
+                        width: 100%;
+                        padding: 0.75rem;
+                        background: linear-gradient(45deg, #667eea, #764ba2);
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        font-weight: bold;
+                    ">Sign Up</button>
+                </form>
+            `;
+            
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+        }
+        
+        function startFreeTrial() {
+            console.log('Starting free trial - Version:', APP_VERSION);
+            alert('Free trial started! Version: ' + APP_VERSION);
+        }
+        
+        function openPortal() {
+            console.log('Opening portal - Version:', APP_VERSION);
+            window.open('https://padygifh.manus.space/', '_blank');
+        }
+        
+        // Version monitoring
+        function checkVersion() {
+            const metaVersion = document.querySelector('meta[name="app-version"]')?.content;
+            if (metaVersion !== APP_VERSION) {
+                console.warn('Version mismatch detected!', {
+                    meta: metaVersion,
+                    app: APP_VERSION
+                });
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Mobile Signova loaded successfully - Version:', APP_VERSION);
+            checkVersion();
+            
+            // Add cache-busting to any dynamic content
+            const timestamp = Date.now();
+            console.log('Cache-busting timestamp:', timestamp);
+        });
+        
+        // Emergency cache clear (for admin use)
+        window.emergencyCacheClear = forceCacheRefresh;
+        
+        // Expose version for debugging
+        window.SIGNOVA_VERSION = APP_VERSION;
+    </script>
+</body>
+</html>
+

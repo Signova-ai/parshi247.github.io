@@ -1,0 +1,35 @@
+# Cache-Busting Configuration for Mobile Signova
+# Prevent caching of HTML files to ensure immediate updates
+
+<IfModule mod_headers.c>
+    # Prevent caching of HTML files
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+        Header set X-Signova-Version "v2025081717"
+    </FilesMatch>
+    
+    # Allow caching of static assets but with version control
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg)$">
+        Header set Cache-Control "public, max-age=3600"
+        Header append Vary "Accept-Encoding"
+    </FilesMatch>
+</IfModule>
+
+# Force no-cache for mobile requests
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Add cache-busting parameters to mobile requests
+    RewriteCond %{QUERY_STRING} !v=
+    RewriteRule ^(.*)$ $1?v=2025081717 [QSA,L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
