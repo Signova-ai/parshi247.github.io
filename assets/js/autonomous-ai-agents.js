@@ -935,7 +935,7 @@ class SupportAssistantAgent extends BaseAIAgent {
             title: 'Need Assistance?',
             message: helpMessage,
             actionText: 'Get Help',
-            action: 'this.openSupportChat()',
+            action: 'openSupportChat()',
             duration: 10000
         });
     }
@@ -943,7 +943,7 @@ class SupportAssistantAgent extends BaseAIAgent {
     offerAssistance() {
         this.dispatchAction('suggest_action', {
             text: 'Need help getting started?',
-            action: 'this.showGettingStartedGuide()',
+            action: 'openSupportChat()',
             duration: 8000
         });
     }
@@ -962,7 +962,7 @@ class SupportAssistantAgent extends BaseAIAgent {
                 title: 'Form Help Available',
                 message: 'We noticed you might need help with the form. Our support team is here to assist!',
                 actionText: 'Get Form Help',
-                action: 'this.showFormHelp()',
+                action: 'openSupportChat()',
                 duration: 8000
             });
         }
