@@ -3,669 +3,568 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - Signova AI Document Intelligence</title>
-    
-    <!-- Cache Control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
+    <title>Pricing - Signova Electronic Signature Platform</title>
     <style>
+        /* Apple-Inspired Design System */
+        :root {
+            --primary-blue: #007AFF;
+            --primary-blue-hover: #0056CC;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+            --surface-primary: #FFFFFF;
+            --surface-secondary: #F5F5F7;
+            --surface-tertiary: #FBFBFD;
+            --border-light: #D2D2D7;
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+            --radius-small: 12px;
+            --radius-medium: 16px;
+            --radius-large: 24px;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.7;
-            color: #1a1a1a;
-            background: #ffffff;
-            font-weight: 400;
-            letter-spacing: -0.01em;
+            font-family: var(--font-system);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--surface-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Navigation */
-        .navbar {
+        /* Navigation - Same as home page */
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-light);
             position: fixed;
+            width: 100%;
             top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #e5e7eb;
             z-index: 1000;
-            padding: 0;
+            transition: all 0.3s ease;
         }
 
-        .nav-container {
-            max-width: 1400px;
+        .nav {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 3rem;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            height: 72px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #1a1a1a;
+            gap: var(--spacing-xs);
             text-decoration: none;
-            letter-spacing: -0.02em;
+            transition: transform 0.2s ease;
         }
 
-        .logo::before {
-            content: "S";
-            background: #1a1a1a;
-            color: white;
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-icon {
             width: 36px;
             height: 36px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #5856D6 100%);
+            border-radius: var(--radius-small);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 0.75rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .s-icon {
+            color: white;
+            font-size: 20px;
             font-weight: 700;
-            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
+            gap: var(--spacing-lg);
             list-style: none;
-            gap: 2rem;
             align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #6b7280;
+            color: var(--text-primary);
             font-weight: 500;
+            font-size: 17px;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-small);
             transition: all 0.2s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
+            position: relative;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #1a1a1a;
-            background: #f9fafb;
+            color: var(--primary-blue);
+            background: rgba(0, 122, 255, 0.05);
         }
 
-        .cta-buttons {
+        .auth-buttons {
             display: flex;
-            gap: 1rem;
+            gap: var(--spacing-sm);
             align-items: center;
         }
 
         .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s ease;
+            padding: 12px 20px;
             border: none;
+            border-radius: var(--radius-medium);
+            font-weight: 600;
+            font-size: 17px;
+            text-decoration: none;
+            transition: all 0.2s ease;
             cursor: pointer;
-            font-size: 0.95rem;
-            letter-spacing: -0.01em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            font-family: var(--font-system);
         }
 
         .btn-primary {
-            background: #1a1a1a;
+            background: var(--primary-blue);
             color: white;
-            border: 1px solid #1a1a1a;
+            box-shadow: var(--shadow-light);
         }
 
         .btn-primary:hover {
-            background: #374151;
-            border-color: #374151;
+            background: var(--primary-blue-hover);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(26, 26, 26, 0.15);
+            box-shadow: var(--shadow-medium);
         }
 
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            padding: 4rem 2rem;
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-1px);
         }
 
-        .page-header {
+        /* Pricing Page Specific Styles */
+        .pricing-hero {
+            background: linear-gradient(135deg, var(--surface-tertiary) 0%, var(--surface-secondary) 100%);
+            padding: 140px 0 var(--spacing-2xl);
             text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .page-header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .page-header p {
-            font-size: 1.25rem;
-            color: #6b7280;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .pricing-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .pricing-card::before {
+        .pricing-hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #f3f4f6, #1a1a1a, #f3f4f6);
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 122, 255, 0.03) 0%, transparent 70%);
         }
 
-        .pricing-card.popular::before {
-            background: linear-gradient(90deg, #1a1a1a, #374151, #1a1a1a);
-        }
-
-        .pricing-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: white;
+        .pricing-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
             position: relative;
+            z-index: 2;
         }
 
-        .pricing-card:nth-child(1) .pricing-avatar {
-            background: linear-gradient(135deg, #6b7280, #9ca3af);
+        .pricing-hero h1 {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
         }
 
-        .pricing-card:nth-child(2) .pricing-avatar {
-            background: linear-gradient(135deg, #1a1a1a, #374151);
+        .pricing-hero p {
+            font-size: 21px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.5;
+            font-weight: 400;
         }
 
-        .pricing-card:nth-child(3) .pricing-avatar {
-            background: linear-gradient(135deg, #374151, #4b5563);
+        /* Pricing Cards */
+        .pricing-section {
+            padding: var(--spacing-2xl) 0;
+            background: var(--surface-primary);
         }
 
-        .pricing-card:nth-child(4) .pricing-avatar {
-            background: linear-gradient(135deg, #111827, #1f2937);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
         }
 
-        .pricing-avatar::after {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .pricing-card {
+            background: var(--surface-primary);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-large);
+            padding: var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
         }
 
         .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border-color: #d1d5db;
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
         }
 
-        .pricing-card.popular {
-            border: 2px solid #1a1a1a;
-            transform: scale(1.02);
+        .pricing-card.featured {
+            border-color: var(--primary-blue);
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.02) 0%, rgba(88, 86, 214, 0.02) 100%);
+            transform: scale(1.05);
         }
 
-        .popular-badge {
+        .pricing-card.featured::before {
+            content: 'Most Popular';
             position: absolute;
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: #1a1a1a;
+            background: var(--primary-blue);
             color: white;
-            padding: 0.5rem 1.25rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-medium);
+            font-size: 14px;
             font-weight: 600;
-            letter-spacing: 0.025em;
         }
 
-        .pricing-card h3 {
-            font-size: 1.5rem;
+        .plan-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -0.5px;
+        }
+
+        .plan-price {
+            font-size: 48px;
             font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.01em;
+            color: var(--primary-blue);
+            margin-bottom: var(--spacing-xs);
+            letter-spacing: -2px;
         }
 
-        .pricing-card .price {
-            font-size: 3.25rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
+        .plan-period {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
         }
 
-        .pricing-card .price-period {
-            color: #6b7280;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .pricing-card .description {
-            color: #6b7280;
-            margin-bottom: 2rem;
-            font-size: 1rem;
+        .plan-description {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
             line-height: 1.5;
         }
 
-        .pricing-features {
+        .plan-features {
             list-style: none;
-            margin-bottom: 2rem;
+            margin-bottom: var(--spacing-xl);
+            text-align: left;
         }
 
-        .pricing-features li {
-            color: #64748b;
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
+        .plan-features li {
+            padding: var(--spacing-xs) 0;
+            font-size: 17px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
         }
 
-        .pricing-features li::before {
-            content: "✓";
-            color: #10b981;
-            font-weight: 700;
-            position: absolute;
-            left: 0;
-        }
-
-        .pricing-card .btn {
-            width: 100%;
-            text-align: center;
-        }
-
-        .faq-section {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .faq-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #1e293b;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .faq-question {
-            font-size: 1.25rem;
+        .plan-features li::before {
+            content: '✓';
+            color: var(--primary-blue);
             font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.5rem;
+            font-size: 18px;
         }
 
-        .faq-answer {
-            color: #64748b;
+        .plan-button {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 17px;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-medium);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: var(--font-system);
         }
 
-        .guarantee-section {
-            text-align: center;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        .plan-button.primary {
+            background: var(--primary-blue);
             color: white;
-            padding: 3rem;
-            border-radius: 16px;
+            box-shadow: var(--shadow-light);
         }
 
-        .guarantee-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .plan-button.primary:hover {
+            background: var(--primary-blue-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
         }
 
-        .guarantee-section p {
-            font-size: 1.25rem;
-            opacity: 0.9;
+        .plan-button.secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .plan-button.secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Enterprise Section */
+        .enterprise-section {
+            background: var(--surface-secondary);
+            padding: var(--spacing-2xl) 0;
+            text-align: center;
+        }
+
+        .enterprise-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--surface-primary);
+            border-radius: var(--radius-large);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .enterprise-card h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -1px;
+        }
+
+        .enterprise-card p {
+            font-size: 19px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                padding: var(--spacing-sm);
+                gap: var(--spacing-sm);
+                height: auto;
+            }
+            
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-sm);
+                width: 100%;
+                text-align: center;
+            }
+            
+            .auth-buttons {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .pricing-hero {
+                padding: 120px 0 var(--spacing-xl);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                padding: var(--spacing-xs);
+            }
+            
+            .pricing-hero-content {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .pricing-card {
+                padding: var(--spacing-md);
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Signova</a>
-            
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <div class="s-icon">S</div>
+                </div>
+                <span class="logo-text">Signova</span>
+            </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="platform.html">Platform</a></li>
-                <li><a href="security.html">Security</a></li>
+                <li><a href="features.html">Features</a></li>
                 <li><a href="pricing.html" class="active">Pricing</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="templates.html">Templates</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="#" onclick="openSignInModal()">Sign In</a></li>
             </ul>
-            
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-primary" onclick="openRegistrationModal()">Start Free Trial</a>
+            <div class="auth-buttons">
+                <a href="signin.html" class="btn btn-secondary">Sign In</a>
+                <a href="http://157.230.85.71" class="btn btn-primary">Start Free Trial</a>
             </div>
+        </nav>
+    </header>
+
+    <section class="pricing-hero">
+        <div class="pricing-hero-content">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Choose the perfect plan for your business needs. All plans include our core features with no hidden fees.</p>
         </div>
-    </nav>
+    </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
+    <section class="pricing-section">
         <div class="container">
-            <div class="page-header">
-                <h1>Simple, Transparent Pricing</h1>
-                <p>Choose the plan that fits your needs. All plans include our core AI features and enterprise security.</p>
-            </div>
-
             <div class="pricing-grid">
+                <!-- Starter Plan -->
                 <div class="pricing-card">
-                    <div class="pricing-avatar">
-                        <img src="assets/avatar-ceo.png" alt="Starter Plan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                    </div>
-                    <h3>Starter</h3>
-                    <div class="price">$9</div>
-                    <div class="price-period">per month</div>
-                    <div class="description">Perfect for individuals and small teams</div>
-                    <ul class="pricing-features">
-                        <li>Up to 100 documents/month</li>
-                        <li>Basic AI processing</li>
+                    <h3 class="plan-name">Starter</h3>
+                    <div class="plan-price">$9</div>
+                    <div class="plan-period">per month</div>
+                    <p class="plan-description">Perfect for individuals and small teams getting started with electronic signatures.</p>
+                    <ul class="plan-features">
+                        <li>5 documents per month</li>
+                        <li>Basic electronic signatures</li>
                         <li>Email support</li>
-                        <li>Standard security</li>
-                        <li>Basic analytics</li>
-                        <li>Document templates</li>
+                        <li>Mobile app access</li>
+                        <li>Basic templates</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('starter')">Get Started</button>
+                    <a href="http://157.230.85.71" class="plan-button secondary">Get Started</a>
                 </div>
 
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="pricing-avatar">
-                        <img src="assets/avatar-manager.png" alt="Professional Plan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                    </div>
-                    <h3>Professional</h3>
-                    <div class="price">$29</div>
-                    <div class="price-period">per month</div>
-                    <div class="description">Ideal for growing businesses</div>
-                    <ul class="pricing-features">
-                        <li>Up to 1,000 documents/month</li>
-                        <li>Advanced AI processing</li>
-                        <li>Priority support</li>
-                        <li>Enhanced security</li>
-                        <li>Advanced analytics</li>
-                        <li>Custom workflows</li>
+                <!-- Professional Plan -->
+                <div class="pricing-card featured">
+                    <h3 class="plan-name">Professional</h3>
+                    <div class="plan-price">$29</div>
+                    <div class="plan-period">per month</div>
+                    <p class="plan-description">Ideal for growing businesses that need advanced features and better support.</p>
+                    <ul class="plan-features">
+                        <li>50 documents per month</li>
+                        <li>Advanced signatures & fields</li>
+                        <li>Priority email support</li>
+                        <li>Custom branding</li>
+                        <li>Advanced templates</li>
+                        <li>Bulk sending</li>
                         <li>API access</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('professional')">Get Started</button>
+                    <a href="http://157.230.85.71" class="plan-button primary">Start Free Trial</a>
                 </div>
 
+                <!-- Business Plan -->
                 <div class="pricing-card">
-                    <div class="pricing-avatar">
-                        <img src="assets/avatar-analyst.png" alt="Business Plan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                    </div>
-                    <h3>Business</h3>
-                    <div class="price">$79</div>
-                    <div class="price-period">per month</div>
-                    <div class="description">For established companies</div>
-                    <ul class="pricing-features">
-                        <li>Up to 10,000 documents/month</li>
-                        <li>Premium AI features</li>
-                        <li>24/7 support</li>
-                        <li>Enterprise security</li>
-                        <li>Custom integrations</li>
-                        <li>Team collaboration</li>
-                        <li>Advanced reporting</li>
-                        <li>White-label options</li>
+                    <h3 class="plan-name">Business</h3>
+                    <div class="plan-price">$79</div>
+                    <div class="plan-period">per month</div>
+                    <p class="plan-description">Comprehensive solution for established businesses with high-volume needs.</p>
+                    <ul class="plan-features">
+                        <li>200 documents per month</li>
+                        <li>All Professional features</li>
+                        <li>Phone & chat support</li>
+                        <li>Advanced integrations</li>
+                        <li>Team management</li>
+                        <li>Advanced analytics</li>
+                        <li>Custom workflows</li>
+                        <li>SSO integration</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('business')">Get Started</button>
+                    <a href="http://157.230.85.71" class="plan-button secondary">Get Started</a>
                 </div>
 
+                <!-- Enterprise Plan -->
                 <div class="pricing-card">
-                    <div class="pricing-avatar">
-                        <img src="assets/avatar-team.png" alt="Enterprise Plan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                    </div>
-                    <h3>Enterprise</h3>
-                    <div class="price">$199</div>
-                    <div class="price-period">per month</div>
-                    <div class="description">For large organizations</div>
-                    <ul class="pricing-features">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <div class="plan-price">$199</div>
+                    <div class="plan-period">per month</div>
+                    <p class="plan-description">Enterprise-grade solution with unlimited documents and premium support.</p>
+                    <ul class="plan-features">
                         <li>Unlimited documents</li>
-                        <li>Custom AI models</li>
-                        <li>Dedicated support</li>
-                        <li>Custom deployment</li>
-                        <li>SLA guarantees</li>
-                        <li>Advanced compliance</li>
-                        <li>Custom training</li>
-                        <li>Priority feature requests</li>
+                        <li>All Business features</li>
+                        <li>24/7 dedicated support</li>
+                        <li>Advanced security controls</li>
+                        <li>Custom integrations</li>
+                        <li>Compliance reporting</li>
+                        <li>White-label options</li>
+                        <li>SLA guarantee</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="selectPlan('enterprise')">Get Started</button>
+                    <a href="http://157.230.85.71" class="plan-button primary">Contact Sales</a>
                 </div>
-            </div>
-
-            <div class="faq-section">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-item">
-                    <div class="faq-question">Can I change my plan anytime?</div>
-                    <div class="faq-answer">Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and you'll be prorated for the difference.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What happens if I exceed my document limit?</div>
-                    <div class="faq-answer">We'll notify you when you're approaching your limit. You can either upgrade your plan or purchase additional document credits.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Do you offer annual discounts?</div>
-                    <div class="faq-answer">Yes! Save 20% when you pay annually. Contact our sales team for enterprise annual pricing.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Is there a free trial?</div>
-                    <div class="faq-answer">Yes, all plans come with a 14-day free trial. No credit card required to start.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What payment methods do you accept?</div>
-                    <div class="faq-answer">We accept all major credit cards, PayPal, Apple Pay, Google Pay, and bank transfers for enterprise customers.</div>
-                </div>
-            </div>
-
-            <!-- Detailed Feature Comparison -->
-            <div class="comparison-section">
-                <h2>Detailed Feature Comparison</h2>
-                <p>Compare all features across our plans to find the perfect fit for your organization</p>
-                
-                <div class="comparison-table">
-                    <div class="comparison-header">
-                        <div class="feature-category">Features</div>
-                        <div class="plan-header">Starter<br><span class="plan-price">$9/mo</span></div>
-                        <div class="plan-header popular-header">Professional<br><span class="plan-price">$29/mo</span></div>
-                        <div class="plan-header">Business<br><span class="plan-price">$79/mo</span></div>
-                        <div class="plan-header">Enterprise<br><span class="plan-price">$199/mo</span></div>
-                    </div>
-
-                    <div class="comparison-category">
-                        <div class="category-title">Document Processing</div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Monthly Document Limit</div>
-                            <div class="feature-value">100</div>
-                            <div class="feature-value">1,000</div>
-                            <div class="feature-value">10,000</div>
-                            <div class="feature-value">Unlimited</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">AI Processing Speed</div>
-                            <div class="feature-value">Standard</div>
-                            <div class="feature-value">Fast</div>
-                            <div class="feature-value">Premium</div>
-                            <div class="feature-value">Lightning</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">File Size Limit</div>
-                            <div class="feature-value">10MB</div>
-                            <div class="feature-value">50MB</div>
-                            <div class="feature-value">100MB</div>
-                            <div class="feature-value">Unlimited</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Batch Processing</div>
-                            <div class="feature-value">✗</div>
-                            <div class="feature-value">✓</div>
-                            <div class="feature-value">✓</div>
-                            <div class="feature-value">✓</div>
-                        </div>
-                    </div>
-
-                    <div class="comparison-category">
-                        <div class="category-title">AI & Analytics</div>
-                        <div class="comparison-row">
-                            <div class="feature-name">AI Accuracy</div>
-                            <div class="feature-value">95%</div>
-                            <div class="feature-value">97%</div>
-                            <div class="feature-value">99%</div>
-                            <div class="feature-value">99.7%</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Custom AI Models</div>
-                            <div class="feature-value">✗</div>
-                            <div class="feature-value">✗</div>
-                            <div class="feature-value">Basic</div>
-                            <div class="feature-value">Advanced</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Analytics Dashboard</div>
-                            <div class="feature-value">Basic</div>
-                            <div class="feature-value">Advanced</div>
-                            <div class="feature-value">Premium</div>
-                            <div class="feature-value">Custom</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Reporting</div>
-                            <div class="feature-value">Standard</div>
-                            <div class="feature-value">Advanced</div>
-                            <div class="feature-value">Premium</div>
-                            <div class="feature-value">Custom</div>
-                        </div>
-                    </div>
-
-                    <div class="comparison-category">
-                        <div class="category-title">Security & Compliance</div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Encryption</div>
-                            <div class="feature-value">256-bit</div>
-                            <div class="feature-value">256-bit</div>
-                            <div class="feature-value">256-bit</div>
-                            <div class="feature-value">Quantum-Safe</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">SOC 2 Compliance</div>
-                            <div class="feature-value">✓</div>
-                            <div class="feature-value">✓</div>
-                            <div class="feature-value">✓</div>
-                            <div class="feature-value">✓</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">HIPAA Compliance</div>
-                            <div class="feature-value">✗</div>
-                            <div class="feature-value">✓</div>
-                            <div class="feature-value">✓</div>
-                            <div class="feature-value">✓</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Custom Compliance</div>
-                            <div class="feature-value">✗</div>
-                            <div class="feature-value">✗</div>
-                            <div class="feature-value">✓</div>
-                            <div class="feature-value">✓</div>
-                        </div>
-                    </div>
-
-                    <div class="comparison-category">
-                        <div class="category-title">Support & Training</div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Support Channel</div>
-                            <div class="feature-value">Email</div>
-                            <div class="feature-value">Email + Chat</div>
-                            <div class="feature-value">24/7 Phone</div>
-                            <div class="feature-value">Dedicated Manager</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Response Time</div>
-                            <div class="feature-value">48 hours</div>
-                            <div class="feature-value">24 hours</div>
-                            <div class="feature-value">4 hours</div>
-                            <div class="feature-value">1 hour</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Training Sessions</div>
-                            <div class="feature-value">Self-service</div>
-                            <div class="feature-value">Group</div>
-                            <div class="feature-value">Dedicated</div>
-                            <div class="feature-value">Custom</div>
-                        </div>
-                        <div class="comparison-row">
-                            <div class="feature-name">Implementation</div>
-                            <div class="feature-value">Self-setup</div>
-                            <div class="feature-value">Guided</div>
-                            <div class="feature-value">Assisted</div>
-                            <div class="feature-value">White-glove</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="guarantee-section">
-                <h2>30-Day Money-Back Guarantee</h2>
-                <p>Try Signova risk-free. If you're not completely satisfied within 30 days, we'll refund your money, no questions asked.</p>
             </div>
         </div>
-    </main>
+    </section>
 
-    <script>
-        function openSignInModal() {
-            window.location.href = 'index.html#signin';
-        }
-
-        function openRegistrationModal() {
-            window.location.href = 'index.html#register';
-        }
-
-        function selectPlan(plan) {
-            // Redirect to registration with selected plan
-            window.location.href = `index.html#register&plan=${plan}`;
-        }
-    </script>
+    <section class="enterprise-section">
+        <div class="container">
+            <div class="enterprise-card">
+                <h3>Need Something More?</h3>
+                <p>For large enterprises with custom requirements, we offer tailored solutions including on-premise deployment, custom integrations, and dedicated support teams.</p>
+                <a href="contact.html" class="plan-button primary">Contact Enterprise Sales</a>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
 

@@ -3,259 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Signova AI-Powered Document Platform</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Contact Us - Signova Electronic Signature Platform</title>
     <style>
+        /* Apple-Inspired Design System */
+        :root {
+            --primary-blue: #007AFF;
+            --primary-blue-hover: #0056CC;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+            --surface-primary: #FFFFFF;
+            --surface-secondary: #F5F5F7;
+            --surface-tertiary: #FBFBFD;
+            --border-light: #D2D2D7;
+            --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+            --radius-small: 12px;
+            --radius-medium: 16px;
+            --radius-large: 24px;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.7;
-            color: #1a1a1a;
-            background: #ffffff;
-            font-weight: 400;
-            letter-spacing: -0.01em;
+            font-family: var(--font-system);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--surface-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Navigation */
-        .navbar {
+        /* Navigation - Same as other pages */
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-light);
             position: fixed;
+            width: 100%;
             top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #e5e7eb;
             z-index: 1000;
-            padding: 0;
+            transition: all 0.3s ease;
         }
 
-        .nav-container {
-            max-width: 1400px;
+        .nav {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 3rem;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            height: 72px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: #1a1a1a;
+            gap: var(--spacing-xs);
             text-decoration: none;
-            letter-spacing: -0.02em;
+            transition: transform 0.2s ease;
         }
 
-        .logo::before {
-            content: "S";
-            background: #1a1a1a;
-            color: white;
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-icon {
             width: 36px;
             height: 36px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #5856D6 100%);
+            border-radius: var(--radius-small);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 0.75rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .s-icon {
+            color: white;
+            font-size: 20px;
             font-weight: 700;
-            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
+            gap: var(--spacing-lg);
             list-style: none;
-            gap: 2rem;
             align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #6b7280;
+            color: var(--text-primary);
             font-weight: 500;
+            font-size: 17px;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-small);
             transition: all 0.2s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
+            position: relative;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: #1a1a1a;
-            background: #f9fafb;
+            color: var(--primary-blue);
+            background: rgba(0, 122, 255, 0.05);
         }
 
-        .cta-buttons {
+        .auth-buttons {
             display: flex;
-            gap: 1rem;
+            gap: var(--spacing-sm);
             align-items: center;
         }
 
         .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s ease;
+            padding: 12px 20px;
             border: none;
+            border-radius: var(--radius-medium);
+            font-weight: 600;
+            font-size: 17px;
+            text-decoration: none;
+            transition: all 0.2s ease;
             cursor: pointer;
-            font-size: 0.95rem;
-            letter-spacing: -0.01em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            font-family: var(--font-system);
         }
 
         .btn-primary {
-            background: #1a1a1a;
+            background: var(--primary-blue);
             color: white;
-            border: 1px solid #1a1a1a;
+            box-shadow: var(--shadow-light);
         }
 
         .btn-primary:hover {
-            background: #374151;
-            border-color: #374151;
+            background: var(--primary-blue-hover);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(26, 26, 26, 0.15);
+            box-shadow: var(--shadow-medium);
         }
 
-        /* Main Content */
-        .main-content {
-            padding-top: 100px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-left: 3rem;
-            padding-right: 3rem;
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
         }
 
-        .page-header {
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: linear-gradient(135deg, var(--surface-tertiary) 0%, var(--surface-secondary) 100%);
+            padding: 140px 0 var(--spacing-2xl);
             text-align: center;
-            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .page-header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 122, 255, 0.03) 0%, transparent 70%);
         }
 
-        .page-header p {
-            font-size: 1.25rem;
-            color: #6b7280;
-            max-width: 700px;
+        .contact-hero-content {
+            max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
+            padding: 0 var(--spacing-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(48px, 6vw, 64px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .contact-hero p {
+            font-size: 21px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* Contact Content */
+        .contact-section {
+            padding: var(--spacing-2xl) 0;
+            background: var(--surface-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-xl);
         }
 
         .contact-info {
-            background: white;
-            border-radius: 12px;
-            padding: 3rem;
-            border: 1px solid #e5e7eb;
+            background: var(--surface-secondary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-large);
         }
 
-        .contact-info h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
+        .contact-info h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            letter-spacing: -0.5px;
         }
 
         .contact-methods {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: var(--spacing-lg);
         }
 
         .contact-method {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--surface-primary);
+            border-radius: var(--radius-medium);
+            box-shadow: var(--shadow-light);
+            transition: transform 0.2s ease;
         }
 
-        .contact-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        .contact-method:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-blue);
+            border-radius: var(--radius-small);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 24px;
             color: white;
-            background: linear-gradient(135deg, #1a1a1a, #374151);
         }
 
-        .contact-method-info h3 {
-            font-size: 1.1rem;
+        .contact-details h4 {
+            font-size: 19px;
             font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
         }
 
-        .contact-method-info p {
-            color: #6b7280;
-            font-size: 0.95rem;
+        .contact-details p {
+            font-size: 17px;
+            color: var(--text-secondary);
         }
 
+        .contact-details a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Form */
         .contact-form {
-            background: white;
-            border-radius: 12px;
-            padding: 3rem;
-            border: 1px solid #e5e7eb;
+            background: var(--surface-primary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--border-light);
         }
 
-        .contact-form h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
+        .contact-form h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            letter-spacing: -0.5px;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: var(--spacing-md);
         }
 
         .form-group label {
             display: block;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
         }
 
         .form-group input,
+        .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-            font-family: inherit;
+            padding: var(--spacing-sm);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-medium);
+            font-size: 17px;
+            font-family: var(--font-system);
+            transition: border-color 0.2s ease;
+            background: var(--surface-primary);
         }
 
         .form-group input:focus,
+        .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #1a1a1a;
-            box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+            border-color: var(--primary-blue);
         }
 
         .form-group textarea {
@@ -263,256 +359,254 @@
             min-height: 120px;
         }
 
-        .team-section {
-            margin-top: 6rem;
-            text-align: center;
-        }
-
-        .team-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            letter-spacing: -0.01em;
-        }
-
-        .team-section p {
-            font-size: 1.1rem;
-            color: #6b7280;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .team-member {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 600;
+        .form-submit {
+            width: 100%;
+            padding: 16px 24px;
+            background: var(--primary-blue);
             color: white;
-            position: relative;
-        }
-
-        .team-member:nth-child(1) .team-avatar {
-            background: linear-gradient(135deg, #1a1a1a, #374151);
-        }
-
-        .team-member:nth-child(2) .team-avatar {
-            background: linear-gradient(135deg, #374151, #4b5563);
-        }
-
-        .team-member:nth-child(3) .team-avatar {
-            background: linear-gradient(135deg, #4b5563, #6b7280);
-        }
-
-        .team-avatar::after {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .team-member h3 {
-            font-size: 1.25rem;
+            border: none;
+            border-radius: var(--radius-medium);
+            font-size: 17px;
             font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-system);
         }
 
-        .team-member p {
-            color: #6b7280;
-            font-size: 0.95rem;
+        .form-submit:hover {
+            background: var(--primary-blue-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
         }
 
+        /* Office Locations */
+        .offices-section {
+            background: var(--surface-secondary);
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: var(--spacing-xl);
+            color: var(--text-primary);
+        }
+
+        .offices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .office-card {
+            background: var(--surface-primary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-large);
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .office-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .office-card h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .office-card p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 1rem 1.5rem;
+            .nav {
+                flex-direction: column;
+                padding: var(--spacing-sm);
+                gap: var(--spacing-sm);
+                height: auto;
             }
-
-            .main-content {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+            
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-sm);
+                width: 100%;
+                text-align: center;
             }
-
-            .page-header h1 {
-                font-size: 2.5rem;
+            
+            .auth-buttons {
+                justify-content: center;
+                width: 100%;
             }
-
+            
+            .contact-hero {
+                padding: 120px 0 var(--spacing-xl);
+            }
+            
             .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: var(--spacing-lg);
             }
+            
+            .offices-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+        }
 
+        @media (max-width: 480px) {
+            .nav {
+                padding: var(--spacing-xs);
+            }
+            
+            .contact-hero-content {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+            
             .contact-info,
             .contact-form {
-                padding: 2rem;
-            }
-
-            .nav-links {
-                display: none;
+                padding: var(--spacing-md);
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Signova</a>
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <div class="s-icon">S</div>
+                </div>
+                <span class="logo-text">Signova</span>
+            </a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="platform.html">Platform</a></li>
-                <li><a href="security.html">Security</a></li>
+                <li><a href="features.html">Features</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="templates.html">Templates</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
-            <div class="cta-buttons">
-                <a href="#" class="btn-secondary" onclick="openSignInModal()">Sign In</a>
-                <a href="#" class="btn btn-primary" onclick="openRegistrationModal()">Start Free Trial</a>
+            <div class="auth-buttons">
+                <a href="signin.html" class="btn btn-secondary">Sign In</a>
+                <a href="http://157.230.85.71" class="btn btn-primary">Start Free Trial</a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <main class="main-content">
-        <div class="page-header">
-            <h1>Contact Our Team</h1>
-            <p>Ready to transform your document workflow? Get in touch with our experts to learn how Signova can help your organization.</p>
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>Get in Touch</h1>
+            <p>Have questions about Signova? We're here to help. Reach out to our team and we'll get back to you within 24 hours.</p>
         </div>
+    </section>
 
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h2>Get in Touch</h2>
-                <div class="contact-methods">
-                    <div class="contact-method">
-                        <div class="contact-avatar">📧</div>
-                        <div class="contact-method-info">
-                            <h3>Email Support</h3>
-                            <p>support@signova.ai</p>
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-details">
+                                <h4>Email Support</h4>
+                                <p><a href="mailto:support@signova.ai">support@signova.ai</a></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-avatar">📞</div>
-                        <div class="contact-method-info">
-                            <h3>Phone Support</h3>
-                            <p>+1 (555) 123-4567</p>
+                        <div class="contact-method">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-details">
+                                <h4>Phone Support</h4>
+                                <p><a href="tel:+1-800-SIGNOVA">+1 (800) SIGNOVA</a></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-avatar">💬</div>
-                        <div class="contact-method-info">
-                            <h3>Live Chat</h3>
-                            <p>Available 24/7 for Enterprise customers</p>
+                        <div class="contact-method">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-details">
+                                <h4>Live Chat</h4>
+                                <p>Available 24/7 for Enterprise customers</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-avatar">🏢</div>
-                        <div class="contact-method-info">
-                            <h3>Enterprise Sales</h3>
-                            <p>enterprise@signova.ai</p>
+                        <div class="contact-method">
+                            <div class="contact-icon">🏢</div>
+                            <div class="contact-details">
+                                <h4>Sales Inquiries</h4>
+                                <p><a href="mailto:sales@signova.ai">sales@signova.ai</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="contact-form">
-                <h2>Send us a Message</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Business Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" name="company">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" required placeholder="Tell us about your document processing needs..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </div>
-
-        <div class="team-section">
-            <h2>Meet Our Leadership Team</h2>
-            <p>Our experienced team is dedicated to revolutionizing document processing with cutting-edge AI technology.</p>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="team-avatar">
-                        <img src="assets/avatar-ceo.png" alt="CEO Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                    </div>
-                    <h3>Alex Chen</h3>
-                    <p>Chief Executive Officer</p>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">
-                        <img src="assets/avatar-cto.png" alt="CTO Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                    </div>
-                    <h3>Sarah Johnson</h3>
-                    <p>Chief Technology Officer</p>
-                </div>
-                <div class="team-member">
-                    <div class="team-avatar">
-                        <img src="assets/avatar-manager.png" alt="VP Sales Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                    </div>
-                    <h3>Michael Rodriguez</h3>
-                    <p>VP of Enterprise Sales</p>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="sales">Sales Question</option>
+                                <option value="billing">Billing Issue</option>
+                                <option value="partnership">Partnership</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <script>
-        function openSignInModal() {
-            // Redirect to sign in functionality
-            window.location.href = 'https://portal.signova.ai';
-        }
-
-        function openRegistrationModal() {
-            // Redirect to registration functionality
-            window.location.href = 'index.html#register';
-        }
-    </script>
+    <section class="offices-section">
+        <div class="container">
+            <h2 class="section-title">Our Offices</h2>
+            <div class="offices-grid">
+                <div class="office-card">
+                    <h4>San Francisco</h4>
+                    <p>123 Market Street<br>San Francisco, CA 94105<br>United States</p>
+                </div>
+                <div class="office-card">
+                    <h4>New York</h4>
+                    <p>456 Broadway<br>New York, NY 10013<br>United States</p>
+                </div>
+                <div class="office-card">
+                    <h4>London</h4>
+                    <p>789 Canary Wharf<br>London E14 5AB<br>United Kingdom</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
 
