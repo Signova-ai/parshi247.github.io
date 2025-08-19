@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security - Signova Electronic Signature Platform</title>
+    <title>Templates - Signova Electronic Signature Platform</title>
     <style>
         /* Apple-Inspired Design System */
         :root {
@@ -186,35 +186,63 @@
             line-height: 1.4;
         }
         
-        /* Security Features Grid */
-        .security-grid {
+        /* Template Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-medium);
+            background: var(--surface-primary);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        /* Templates Grid */
+        .templates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: var(--spacing-xl);
             margin-top: var(--spacing-2xl);
         }
         
-        .security-card {
+        .template-card {
             background: var(--surface-primary);
             border-radius: var(--radius-large);
             padding: var(--spacing-xl);
             box-shadow: var(--shadow-light);
             border: 1px solid var(--border-light);
             transition: all 0.3s ease;
+            text-align: center;
         }
         
-        .security-card:hover {
+        .template-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-medium);
         }
         
-        .security-icon {
+        .template-icon {
             font-size: 48px;
             margin-bottom: var(--spacing-md);
             display: block;
         }
         
-        .security-card h3 {
+        .template-card h3 {
             font-size: 24px;
             font-weight: 600;
             margin-bottom: var(--spacing-sm);
@@ -222,18 +250,20 @@
             letter-spacing: -0.5px;
         }
         
-        .security-card p {
+        .template-card p {
             color: var(--text-secondary);
             font-size: 17px;
             line-height: 1.6;
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
         }
         
-        .security-features {
+        .template-features {
             list-style: none;
+            margin-bottom: var(--spacing-lg);
+            text-align: left;
         }
         
-        .security-features li {
+        .template-features li {
             padding: var(--spacing-xs) 0;
             display: flex;
             align-items: center;
@@ -241,53 +271,17 @@
             color: var(--text-primary);
         }
         
-        .security-features li::before {
+        .template-features li::before {
             content: '✓';
             color: var(--primary-blue);
             font-weight: 700;
             font-size: 16px;
         }
         
-        /* Compliance Section */
-        .compliance-section {
-            margin-top: var(--spacing-2xl);
-            text-align: center;
-        }
-        
-        .section-title {
-            font-size: clamp(36px, 4vw, 48px);
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: var(--spacing-xl);
-            color: var(--text-primary);
-        }
-        
-        .compliance-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl);
-        }
-        
-        .compliance-badge {
-            background: var(--surface-primary);
-            border-radius: var(--radius-large);
-            padding: var(--spacing-lg);
-            box-shadow: var(--shadow-light);
-            border: 1px solid var(--border-light);
-            text-align: center;
-        }
-        
-        .compliance-badge h4 {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-xs);
-        }
-        
-        .compliance-badge p {
-            color: var(--text-secondary);
-            font-size: 15px;
+        .template-button {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: 17px;
         }
         
         /* CTA Section */
@@ -346,13 +340,14 @@
                 width: 100%;
             }
             
-            .security-grid {
+            .templates-grid {
                 grid-template-columns: 1fr;
                 gap: var(--spacing-lg);
             }
             
-            .compliance-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .categories {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -369,8 +364,8 @@
             <ul class="nav-links">
                 <li><a href="features.html">Features</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="security.html" class="active">Security</a></li>
-                <li><a href="templates.html">Templates</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="templates.html" class="active">Templates</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="auth-buttons">
@@ -382,118 +377,142 @@
 
     <main class="main">
         <section class="hero">
-            <h1>Enterprise-Grade Security</h1>
-            <p>Bank-level encryption and comprehensive compliance frameworks protect your most sensitive documents with military-grade security.</p>
+            <h1>Document Templates</h1>
+            <p>Professional templates for all your business needs. Get started quickly with pre-built forms and contracts.</p>
         </section>
 
-        <section class="security-grid">
-            <div class="security-card">
-                <span class="security-icon">🛡️</span>
-                <h3>End-to-End Encryption</h3>
-                <p>AES-256 encryption with quantum-resistant algorithms ensures your documents remain secure from transmission to storage.</p>
-                <ul class="security-features">
-                    <li>256-bit AES encryption</li>
-                    <li>Quantum-resistant algorithms</li>
-                    <li>Unique encryption keys</li>
-                    <li>Secure key management</li>
-                </ul>
-            </div>
-
-            <div class="security-card">
-                <span class="security-icon">🔐</span>
-                <h3>Zero-Knowledge Architecture</h3>
-                <p>Our zero-knowledge design means we never have access to your unencrypted data, ensuring complete privacy.</p>
-                <ul class="security-features">
-                    <li>Client-side encryption</li>
-                    <li>No server-side access</li>
-                    <li>Complete data privacy</li>
-                    <li>User-controlled keys</li>
-                </ul>
-            </div>
-
-            <div class="security-card">
-                <span class="security-icon">🔍</span>
-                <h3>Advanced Threat Detection</h3>
-                <p>AI-powered security monitoring detects and prevents suspicious activities in real-time.</p>
-                <ul class="security-features">
-                    <li>Real-time monitoring</li>
-                    <li>AI threat detection</li>
-                    <li>Behavioral analysis</li>
-                    <li>Automated response</li>
-                </ul>
-            </div>
-
-            <div class="security-card">
-                <span class="security-icon">📋</span>
-                <h3>Comprehensive Audit Trails</h3>
-                <p>Complete audit logs track every action with immutable timestamps for regulatory compliance.</p>
-                <ul class="security-features">
-                    <li>Immutable audit logs</li>
-                    <li>Detailed activity tracking</li>
-                    <li>Forensic capabilities</li>
-                    <li>Compliance reporting</li>
-                </ul>
-            </div>
-
-            <div class="security-card">
-                <span class="security-icon">🌐</span>
-                <h3>Secure Transmission</h3>
-                <p>TLS 1.3 protocols with perfect forward secrecy ensure secure data transmission.</p>
-                <ul class="security-features">
-                    <li>TLS 1.3 encryption</li>
-                    <li>Perfect forward secrecy</li>
-                    <li>Certificate pinning</li>
-                    <li>Secure protocols</li>
-                </ul>
-            </div>
-
-            <div class="security-card">
-                <span class="security-icon">🔑</span>
-                <h3>Multi-Factor Authentication</h3>
-                <p>Advanced MFA with biometric options and adaptive authentication based on risk assessment.</p>
-                <ul class="security-features">
-                    <li>Biometric authentication</li>
-                    <li>Hardware tokens</li>
-                    <li>Adaptive MFA</li>
-                    <li>Risk-based access</li>
-                </ul>
-            </div>
+        <section class="categories">
+            <a href="#" class="category-btn active">All Templates</a>
+            <a href="#" class="category-btn">Contracts</a>
+            <a href="#" class="category-btn">Legal</a>
+            <a href="#" class="category-btn">HR</a>
+            <a href="#" class="category-btn">Real Estate</a>
+            <a href="#" class="category-btn">Finance</a>
         </section>
 
-        <section class="compliance-section">
-            <h2 class="section-title">Industry Compliance & Certifications</h2>
-            <div class="compliance-grid">
-                <div class="compliance-badge">
-                    <h4>SOC 2 Type II</h4>
-                    <p>Comprehensive security controls audited by independent third parties</p>
-                </div>
-                <div class="compliance-badge">
-                    <h4>ISO 27001</h4>
-                    <p>International standard for information security management systems</p>
-                </div>
-                <div class="compliance-badge">
-                    <h4>GDPR Compliant</h4>
-                    <p>Full compliance with European data protection regulations</p>
-                </div>
-                <div class="compliance-badge">
-                    <h4>HIPAA Ready</h4>
-                    <p>Healthcare data protection with Business Associate Agreements</p>
-                </div>
-                <div class="compliance-badge">
-                    <h4>PCI DSS</h4>
-                    <p>Payment card industry data security standards compliance</p>
-                </div>
-                <div class="compliance-badge">
-                    <h4>FedRAMP Ready</h4>
-                    <p>Government-grade security for federal agency requirements</p>
-                </div>
+        <section class="templates-grid">
+            <div class="template-card">
+                <span class="template-icon">📄</span>
+                <h3>Service Agreement</h3>
+                <p>Professional service agreement template with customizable terms and conditions.</p>
+                <ul class="template-features">
+                    <li>Customizable terms</li>
+                    <li>Payment schedules</li>
+                    <li>Scope of work</li>
+                    <li>Legal compliance</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
+            </div>
+
+            <div class="template-card">
+                <span class="template-icon">🏠</span>
+                <h3>Real Estate Purchase</h3>
+                <p>Complete real estate purchase agreement with all necessary legal provisions.</p>
+                <ul class="template-features">
+                    <li>Property details</li>
+                    <li>Purchase terms</li>
+                    <li>Contingencies</li>
+                    <li>Closing procedures</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
+            </div>
+
+            <div class="template-card">
+                <span class="template-icon">👔</span>
+                <h3>Employment Contract</h3>
+                <p>Comprehensive employment agreement covering all essential employment terms.</p>
+                <ul class="template-features">
+                    <li>Job description</li>
+                    <li>Compensation details</li>
+                    <li>Benefits package</li>
+                    <li>Termination clauses</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
+            </div>
+
+            <div class="template-card">
+                <span class="template-icon">🤝</span>
+                <h3>Non-Disclosure Agreement</h3>
+                <p>Protect your confidential information with our comprehensive NDA template.</p>
+                <ul class="template-features">
+                    <li>Confidentiality terms</li>
+                    <li>Duration clauses</li>
+                    <li>Permitted disclosures</li>
+                    <li>Legal remedies</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
+            </div>
+
+            <div class="template-card">
+                <span class="template-icon">💰</span>
+                <h3>Loan Agreement</h3>
+                <p>Professional loan agreement template with flexible repayment terms.</p>
+                <ul class="template-features">
+                    <li>Loan amount & terms</li>
+                    <li>Interest rates</li>
+                    <li>Repayment schedule</li>
+                    <li>Default provisions</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
+            </div>
+
+            <div class="template-card">
+                <span class="template-icon">🚚</span>
+                <h3>Vendor Agreement</h3>
+                <p>Establish clear vendor relationships with our comprehensive vendor agreement.</p>
+                <ul class="template-features">
+                    <li>Service specifications</li>
+                    <li>Delivery terms</li>
+                    <li>Quality standards</li>
+                    <li>Payment terms</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
+            </div>
+
+            <div class="template-card">
+                <span class="template-icon">📋</span>
+                <h3>Consulting Agreement</h3>
+                <p>Professional consulting agreement for independent contractors and consultants.</p>
+                <ul class="template-features">
+                    <li>Project scope</li>
+                    <li>Deliverables</li>
+                    <li>Timeline & milestones</li>
+                    <li>Intellectual property</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
+            </div>
+
+            <div class="template-card">
+                <span class="template-icon">🏢</span>
+                <h3>Lease Agreement</h3>
+                <p>Comprehensive lease agreement for residential and commercial properties.</p>
+                <ul class="template-features">
+                    <li>Property description</li>
+                    <li>Rent & deposits</li>
+                    <li>Lease terms</li>
+                    <li>Maintenance responsibilities</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
+            </div>
+
+            <div class="template-card">
+                <span class="template-icon">⚖️</span>
+                <h3>Partnership Agreement</h3>
+                <p>Establish business partnerships with clear terms and responsibilities.</p>
+                <ul class="template-features">
+                    <li>Partnership structure</li>
+                    <li>Profit sharing</li>
+                    <li>Decision making</li>
+                    <li>Exit provisions</li>
+                </ul>
+                <a href="http://157.230.85.71" class="btn btn-primary template-button">Use Template</a>
             </div>
         </section>
 
         <section class="cta">
-            <h2>Ready for Enterprise Security?</h2>
-            <p>Join thousands of businesses that trust Signova's enterprise-grade security for their most critical documents.</p>
-            <a href="http://157.230.85.71" class="btn">Start Secure Trial</a>
+            <h2>Ready to Get Started?</h2>
+            <p>Choose from hundreds of professional templates and start signing documents in minutes.</p>
+            <a href="http://157.230.85.71" class="btn">Browse All Templates</a>
         </section>
     </main>
 </body>
