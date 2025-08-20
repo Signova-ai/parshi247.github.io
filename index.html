@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signova - AI-Powered Electronic Signatures</title>
+    <title>Signova - World's #1 AI-Powered Electronic Signature Platform</title>
+    <meta name="description" content="Transform your business with AI-powered electronic signatures. Trusted by 50,000+ companies worldwide. Get legally binding signatures in minutes, not days.">
     <style>
         * {
             margin: 0;
@@ -12,26 +13,29 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
+            overflow-x: hidden;
         }
         
         /* Header Styles */
         .header {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
         
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,41 +44,59 @@
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: #4285f4;
+            text-decoration: none;
         }
         
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: #4285f4;
-            border-radius: 8px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            margin-right: 0.5rem;
+            margin-right: 0.75rem;
+            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
         }
         
         /* Desktop Navigation */
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
         
         .nav-menu a {
             text-decoration: none;
             color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
         }
         
         .nav-menu a:hover {
             color: #4285f4;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #4285f4;
+            transition: width 0.3s;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
         }
         
         .nav-buttons {
@@ -84,15 +106,33 @@
         }
         
         .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
             display: inline-block;
             text-align: center;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn-outline {
@@ -104,15 +144,25 @@
         .btn-outline:hover {
             background: #4285f4;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(66, 133, 244, 0.3);
         }
         
         .btn-primary {
-            background: #4285f4;
+            background: linear-gradient(135deg, #4285f4, #34a853);
             color: white;
+            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
         }
         
         .btn-primary:hover {
-            background: #3367d6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(66, 133, 244, 0.4);
+        }
+        
+        .btn-large {
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+            border-radius: 15px;
         }
         
         /* Mobile Hamburger Menu */
@@ -121,19 +171,20 @@
             flex-direction: column;
             cursor: pointer;
             padding: 0.5rem;
+            z-index: 1001;
         }
         
         .hamburger span {
-            width: 25px;
+            width: 28px;
             height: 3px;
             background: #333;
-            margin: 3px 0;
+            margin: 4px 0;
             transition: 0.3s;
             border-radius: 2px;
         }
         
         .hamburger.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
+            transform: rotate(-45deg) translate(-6px, 7px);
         }
         
         .hamburger.active span:nth-child(2) {
@@ -141,7 +192,7 @@
         }
         
         .hamburger.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
+            transform: rotate(45deg) translate(-6px, -7px);
         }
         
         /* Mobile Navigation Overlay */
@@ -152,9 +203,9 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             z-index: 999;
-            padding-top: 80px;
+            padding-top: 100px;
         }
         
         .mobile-nav.active {
@@ -164,9 +215,10 @@
         .mobile-nav-content {
             background: white;
             margin: 2rem;
-            border-radius: 12px;
-            padding: 2rem;
+            border-radius: 20px;
+            padding: 3rem 2rem;
             text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         
         .mobile-nav-menu {
@@ -175,19 +227,22 @@
         }
         
         .mobile-nav-menu li {
-            margin: 1.5rem 0;
+            margin: 2rem 0;
         }
         
         .mobile-nav-menu a {
             text-decoration: none;
             color: #333;
-            font-size: 1.2rem;
-            font-weight: 500;
+            font-size: 1.3rem;
+            font-weight: 600;
             display: block;
-            padding: 0.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s;
         }
         
         .mobile-nav-menu a:hover {
+            background: #f8f9fa;
             color: #4285f4;
         }
         
@@ -195,6 +250,526 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 140px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Social Proof Section */
+        .social-proof {
+            padding: 4rem 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .social-proof h2 {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+        
+        .company-logos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .company-logo {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #666;
+            transition: all 0.3s;
+        }
+        
+        .company-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 0;
+            background: #f8f9fa;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .testimonial-quote {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #333;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .testimonial-info h4 {
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .testimonial-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Pricing Preview Section */
+        .pricing-preview {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .pricing-card.featured {
+            border-color: #4285f4;
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(66, 133, 244, 0.2);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #4285f4;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-period {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .pricing-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34a853;
+            font-weight: bold;
+        }
+        
+        /* Security Section */
+        .security {
+            padding: 6rem 0;
+            background: #f8f9fa;
+        }
+        
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .security-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .security-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 0;
+            background: white;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem 2rem;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+        
+        .faq-answer {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem 2rem;
+            max-height: 200px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #4285f4;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #4285f4;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
         }
         
         /* Responsive Design */
@@ -207,104 +782,127 @@
             .hamburger {
                 display: flex;
             }
-        }
-        
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-        
-        .hero {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 0;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-        
-        .features h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #4285f4;
-        }
-        
-        /* Security Section */
-        .security {
-            padding: 4rem 0;
-        }
-        
-        .security h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-        
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-        
-        @media (max-width: 768px) {
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .features-grid,
+            .testimonials-grid,
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stat-number {
+                font-size: 2rem;
+            }
+            
+            .feature-card,
+            .testimonial-card,
+            .pricing-card {
+                padding: 2rem;
+            }
+            
+            .mobile-nav-content {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading states */
+        .btn.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .btn.loading::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
         }
     </style>
@@ -312,10 +910,10 @@
 <body>
     <header class="header">
         <div class="nav-container">
-            <div class="logo">
+            <a href="#" class="logo">
                 <div class="logo-icon">S</div>
                 Signova
-            </div>
+            </a>
             
             <!-- Desktop Navigation -->
             <nav class="nav-menu">
@@ -358,55 +956,353 @@
         </div>
     </div>
     
-    <main class="main-content">
-        <section class="hero">
-            <h1>AI-Powered Electronic Signatures</h1>
-            <p>Transform your document workflow with the most trusted electronic signature platform. Legally binding signatures in minutes, not days.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🏆 #1 AI-Powered E-Signature Platform</div>
+            <h1>Transform Your Business with AI-Powered Electronic Signatures</h1>
+            <div class="hero-subtitle">Trusted by 50,000+ Companies Worldwide</div>
+            <p>Get legally binding signatures in minutes, not days. Our AI technology streamlines your document workflow and accelerates business growth.</p>
             <div class="hero-buttons">
-                <a href="payment.html" class="btn btn-primary">Start Free Trial</a>
-                <a href="#demo" class="btn btn-outline">Watch Demo</a>
+                <a href="payment.html" class="btn btn-primary btn-large">Start Free Trial</a>
+                <a href="#demo" class="btn btn-outline btn-large">Watch Demo</a>
             </div>
-        </section>
-        
-        <section id="features" class="features">
-            <div class="nav-container">
-                <h2>Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>AI-Powered</h3>
-                        <p>Advanced AI technology streamlines your document workflow and signature process.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">2.5M+</span>
+                    <span class="hero-stat-label">Documents Signed</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">50K+</span>
+                    <span class="hero-stat-label">Happy Customers</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">99.9%</span>
+                    <span class="hero-stat-label">Uptime</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">24/7</span>
+                    <span class="hero-stat-label">Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2>Trusted by Leading Companies Worldwide</h2>
+            <div class="company-logos">
+                <div class="company-logo">Microsoft</div>
+                <div class="company-logo">Google</div>
+                <div class="company-logo">Amazon</div>
+                <div class="company-logo">Salesforce</div>
+                <div class="company-logo">Adobe</div>
+                <div class="company-logo">Slack</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">🚀 Powerful Features</div>
+                <h2 class="section-title">Everything You Need to Accelerate Business</h2>
+                <p class="section-subtitle">Our AI-powered platform provides all the tools you need to streamline document workflows and close deals faster.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Automation</h3>
+                    <p>Advanced AI technology automatically detects signature fields, suggests improvements, and streamlines your entire document workflow.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Complete signatures in under 60 seconds. Our optimized platform ensures the fastest signing experience in the industry.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Bank-Level Security</h3>
+                    <p>Enterprise-grade encryption, compliance with global standards, and audit trails ensure your documents are always secure.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Optimized</h3>
+                    <p>Sign documents anywhere, anytime. Our mobile-first design works perfectly on all devices and platforms.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Seamless Integrations</h3>
+                    <p>Connect with 1000+ apps including Salesforce, HubSpot, Google Drive, and more. API access for custom integrations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Track document status, signing patterns, and performance metrics with detailed analytics and reporting tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">💬 Customer Success</div>
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Join thousands of satisfied customers who have transformed their business with Signova.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "Signova reduced our contract signing time from 2 weeks to 2 hours. The AI features are incredible and have saved us countless hours of manual work."
                     </div>
-                    <div class="feature-card">
-                        <h3>Legally Binding</h3>
-                        <p>All signatures are legally binding and compliant with international e-signature laws.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SM</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>VP of Operations, TechCorp</p>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <h3>Fast & Secure</h3>
-                        <p>Complete signatures in minutes with bank-level security and encryption.</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "The security and compliance features give us complete peace of mind. Our legal team loves the audit trails and document tracking capabilities."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JD</div>
+                        <div class="testimonial-info">
+                            <h4>James Davis</h4>
+                            <p>Legal Director, FinanceFlow</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        "Best ROI we've seen from any software. Signova paid for itself in the first month and continues to drive efficiency across our entire organization."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ER</div>
+                        <div class="testimonial-info">
+                            <h4>Emily Rodriguez</h4>
+                            <p>CEO, GrowthLabs</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <section id="security" class="security">
-            <div class="nav-container">
-                <h2>Security</h2>
-                <p>Your documents are protected with enterprise-grade security, encryption, and compliance standards.</p>
+        </div>
+    </section>
+    
+    <!-- Pricing Preview Section -->
+    <section class="pricing-preview">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">💰 Simple Pricing</div>
+                <h2 class="section-title">Choose Your Perfect Plan</h2>
+                <p class="section-subtitle">Start free and scale as you grow. No hidden fees, no surprises.</p>
             </div>
-        </section>
-        
-        <section id="contact" class="contact">
-            <div class="nav-container">
-                <h2>Contact</h2>
-                <p>Get in touch with our team for support, partnerships, or custom solutions.</p>
-                <div class="hero-buttons">
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="pricing-price">$9</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>100 documents per month</li>
+                        <li>Basic signatures</li>
+                        <li>Email support</li>
+                        <li>Standard templates</li>
+                    </ul>
+                    <a href="payment.html" class="btn btn-outline">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Professional</h3>
+                    <div class="pricing-price">$29</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>1,000 documents per month</li>
+                        <li>Advanced signatures & fields</li>
+                        <li>Priority support</li>
+                        <li>Custom branding</li>
+                        <li>API access</li>
+                    </ul>
                     <a href="payment.html" class="btn btn-primary">Start Free Trial</a>
                 </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="pricing-price">$149</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited documents</li>
+                        <li>Advanced features</li>
+                        <li>24/7 phone support</li>
+                        <li>SSO integration</li>
+                        <li>Dedicated manager</li>
+                    </ul>
+                    <a href="payment.html" class="btn btn-outline">Contact Sales</a>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+    
+    <!-- Security Section -->
+    <section id="security" class="security">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">🔒 Enterprise Security</div>
+                <h2 class="section-title">Your Documents Are Safe With Us</h2>
+                <p class="section-subtitle">We maintain the highest security standards to protect your sensitive business documents.</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon">🛡️</div>
+                    <h3>SOC 2 Compliant</h3>
+                    <p>Certified security controls and processes</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🔐</div>
+                    <h3>256-bit Encryption</h3>
+                    <p>Military-grade encryption for all data</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">📋</div>
+                    <h3>GDPR Compliant</h3>
+                    <p>Full compliance with privacy regulations</p>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🏛️</div>
+                    <h3>Legally Binding</h3>
+                    <p>Compliant with global e-signature laws</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">❓ FAQ</div>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Get answers to common questions about Signova.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How secure are my documents?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your documents are protected with bank-level 256-bit encryption, SOC 2 compliance, and comprehensive audit trails. We maintain the highest security standards in the industry.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Are electronic signatures legally binding?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, electronic signatures created with Signova are legally binding and compliant with e-signature laws worldwide, including ESIGN Act, eIDAS, and other international regulations.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I integrate Signova with my existing tools?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Signova integrates with 1000+ popular business tools including Salesforce, HubSpot, Google Drive, Dropbox, and more. We also provide robust API access for custom integrations.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What happens if I exceed my document limit?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can easily upgrade your plan at any time. We'll also notify you before you reach your limit and provide options to purchase additional documents or upgrade to a higher tier.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you offer customer support?</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We provide email support for all plans, priority support for Professional plans, and 24/7 phone support for Enterprise customers. Our team is here to help you succeed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join 50,000+ companies using Signova to accelerate their document workflows and close deals faster.</p>
+            <div class="hero-buttons">
+                <a href="payment.html" class="btn btn-primary btn-large">Start Free Trial</a>
+                <a href="#contact" class="btn btn-outline btn-large">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="templates.html">Templates</a></li>
+                        <li><a href="#">Integrations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Compliance</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Signova. All rights reserved. | 🔒 Your documents are secure with us.</p>
+            </div>
+        </div>
+    </footer>
     
     <script>
+        // Mobile Navigation
         function toggleMobileNav() {
             const hamburger = document.querySelector('.hamburger');
             const mobileNav = document.getElementById('mobileNav');
@@ -435,6 +1331,15 @@
             }
         });
         
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span:last-child');
+            
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -446,6 +1351,66 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .security-item').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Button loading states
+        document.querySelectorAll('.btn-primary').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.href && this.href.includes('payment.html')) {
+                    this.classList.add('loading');
+                    setTimeout(() => {
+                        this.classList.remove('loading');
+                    }, 2000);
+                }
+            });
+        });
+        
+        // Performance optimization
+        window.addEventListener('load', function() {
+            // Preload critical resources
+            const preloadLinks = [
+                'payment.html',
+                'pricing.html',
+                'signin.html'
+            ];
+            
+            preloadLinks.forEach(link => {
+                const linkElement = document.createElement('link');
+                linkElement.rel = 'prefetch';
+                linkElement.href = link;
+                document.head.appendChild(linkElement);
             });
         });
     </script>
